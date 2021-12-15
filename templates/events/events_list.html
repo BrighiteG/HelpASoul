@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %} List of Events {% endblock %}
+
+{% block content %}
+    {% for event in events_list %}
+        <p>Event: {{ event.title }} {{ event.organizer }}</p>
+        <p> About: {{ event.description }}</p>
+    {% endfor %}
+{% endblock %}

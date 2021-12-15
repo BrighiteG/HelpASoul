@@ -6,7 +6,7 @@ class Events(models.Model):
     title = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     organizer = models.CharField(max_length=200)
-    description = models.TextField(null=False, blank=False)
+    description = models.TextField(null=True, blank=False)
     created = models.DateTimeField(auto_now_add=True)
     # profile_image = models.ImageField(upload_to = 'static')
     start_date = models.DateTimeField()
