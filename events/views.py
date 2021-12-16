@@ -21,5 +21,5 @@ class EventsListView(ListView):
 class EventUpdateView(UpdateView):
     template_name = 'events/event_update.html'
     model = Events
-    # success_url = ''
+    success_url = 'homepage'
     form_class = EventForm

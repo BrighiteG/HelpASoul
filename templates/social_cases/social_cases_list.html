@@ -2,5 +2,17 @@
 {% block title %} Social Cases {% endblock %}
 
 {% block content %}
-    <p>works</p>
+    {% for case in social_cases_list %}
+        <p>{{ case.title }}</p>
+        <p>{{ case.description }}</p>
+            <a href="{% url 'update-social-case' case.id %}" class="text-info">Update Data</a>}
+    {% endfor %}
+
+{#    {% for x in social_cases_list.tag.all %}#}
+{#        <p>{{ x.name }}</p>#}
+{#    {% endfor %}#}
+
+
 {% endblock %}
+
+

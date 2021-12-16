@@ -6,5 +6,11 @@
     {% for event in events_list %}
         <p>Event: {{ event.title }} {{ event.organizer }}</p>
         <p> About: {{ event.description }}</p>
+        <li>
+            <a href="{% url 'event-update' event.id %}" class="text-info">Update Data</a>
+
+        </li>
     {% endfor %}
 {% endblock %}
+
+
