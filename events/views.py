@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, UpdateView
 
+from events.forms import EventForm
 from events.models import Events
 
 
@@ -16,3 +17,9 @@ class EventsListView(ListView):
     model = Events
     context_object_name = 'events_list'
 
+
+class EventUpdateView(UpdateView):
+    template_name = 'events/event_update.html'
+    model = Events
+    # success_url = ''
+    form_class = EventForm
