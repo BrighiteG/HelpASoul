@@ -10,7 +10,7 @@ class SocialCase(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     # profile_image = models.ImageField()
     donations = models.IntegerField()
-    tag = models.ManyToManyField('events.Tag')
+    tags = models.ManyToManyField(Tag)
 
     def __str__(self):
         return str(self.title)

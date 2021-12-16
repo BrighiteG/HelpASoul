@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, UpdateView
 
 from events.forms import EventForm
-from events.models import Events
+from events.models import Event
 
 
 from django.views.generic import TemplateView
@@ -14,12 +14,12 @@ class HomeTemplateView(TemplateView):
 
 class EventsListView(ListView):
     template_name = 'events/events_list.html'
-    model = Events
+    model = Event
     context_object_name = 'events_list'
 
 
 class EventUpdateView(UpdateView):
     template_name = 'events/event_update.html'
-    model = Events
     success_url = 'homepage'
+    model = Event
     form_class = EventForm
