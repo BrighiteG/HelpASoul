@@ -1,10 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, UpdateView
-
 from events.forms import EventForm
 from events.models import Event
-
-
 from django.views.generic import TemplateView
 
 
