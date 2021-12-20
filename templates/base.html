@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -33,7 +34,7 @@
         <a class="nav-link disabled" href="#">Contact Us</a>
       </li>
         <li>
-            {% if user.is_authenticated %}
+            {% if request.user.is_authenticated %}
                 <a href="{% url 'logout' %}" class="btn btn-info">Logout, {{ request.user.username }}</a>
             {% else %}
                 <a href="{% url 'create-user' %}" class="btn btn-primary"> Sign up </a>
@@ -44,7 +45,7 @@
     </ul>
   </div>
 </nav>
-
+<img src="{% static 'images/Aesthetic-Desktop-Wallpaper.jpg' %}" alt="">
 <body>
     {% block content %}
 

@@ -2,6 +2,7 @@
 {% block title %} Create Event {% endblock %}
 
 {% block content %}
+    {% if request.user.is_authenticated %}
     <div class="row">
             <div class="col-md-6 offset-md-3">
                 <form method="POST">
@@ -11,4 +12,6 @@
                 </form>
             </div>
     </div>
+    {% endif %}
 {% endblock %}
+
