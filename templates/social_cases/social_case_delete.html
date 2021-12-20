@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete a social case{% endblock title %}
+
+{% block content  %}
+
+     <p>Are you sure you want to delete {{ socialcase.title }} ?</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Yes</button>
+        <a href="{% url 'social-cases' %}" class="btn btn-default">No</a>
+    </form>
+
+
+{% endblock %}

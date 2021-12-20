@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import ListView, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, UpdateView, CreateView, DeleteView
 
 from social_cases.forms import SocialCaseForm
 from social_cases.models import SocialCase
@@ -14,5 +15,23 @@ class SocialCasesListView(ListView):
 class SocialCaseUpdateView(UpdateView):
     template_name = 'social_cases/social_case_update.html'
     model = SocialCase
-    succses_url = ""
+    success_url = reverse_lazy('social-cases')
     form_class = SocialCaseForm
+
+
+class SocialCaseCreateView(CreateView):
+    template_name = 'social_cases/social_case_create.html'
+    model = SocialCase
+    form_class = SocialCaseForm
+    success_url = reverse_lazy('social-cases')
+
+
+class SocialCaseDeleteView(DeleteView):
+    template_name = 'social_cases/social_case_delete.html'
+    model = SocialCase
+    success_url = reverse_lazy('social-cases')
+
+
+
+
+

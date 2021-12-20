@@ -7,7 +7,7 @@ from social_cases.models import SocialCase
 class SocialCaseForm(forms.ModelForm):
     class Meta:
         model = SocialCase
-        fields = ['title', 'description', 'tags']
+        fields = ['title', 'description', 'tags', 'donations', 'user']
         widgets = {
             'title': TextInput(attrs={'placeholder': 'Adauga titlul cazului social', 'class': 'form-control'}),
             'description': TextInput(attrs={'placeholder': 'Adauga descrierea cazului social', 'class': 'form-control'}),

@@ -8,4 +8,10 @@ class Profile(models.Model):
     phone_nr = models.IntegerField()
     location = models.CharField(max_length=200)
     is_volunteer = models.BooleanField(default=False)
-    tags = models.ManyToManyField('events.Tag')
+    tags = models.ManyToManyField(Tag)
+
+    def __str__(self):
+        return str(self.user), str(self.location)
+
+
+
