@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+
 from events.models import Tag
 
 
@@ -10,7 +11,7 @@ class SocialCase(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     profile_image = models.ImageField(upload_to='static/images/dynamic', default='static/images/Aesthetic-Desktop-Wallpaper.jpg')
     donations = models.IntegerField()
-    tags = models.ManyToManyField(Tag)
+    case_tags = models.ManyToManyField(Tag)
 
     def __str__(self):
         return str(self.title)
