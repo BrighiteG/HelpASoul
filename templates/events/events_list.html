@@ -3,13 +3,15 @@
 {% block title %} List of Events {% endblock %}
 
 {% block content %}
+    <a href="{% url 'event-create' %}" class="btn btn-primary"> Create Event </a>
     {% for event in events_list %}
-        <p>Event: {{ event.title }} {{ event.organizer }}</p>
-        <p> About: {{ event.description }}</p>
-        <a href="{% url 'event-update' event.id %}" class="text-info">Update Data</a>
+        <p>Event: {{ event.title }} {{ event.organizer }} </p>
+        <p> About: {{ event.description }} </p>
+        <a href="{% url 'event-update' event.id %}" class="text-info"> Update Data </a>
+        <a href="{% url 'event-delete' event.id %}" class="btn btn-danger"> Delete Event </a>
         {%  for tag in event.tags.set.all %}
-            <p> {{ tag }}</p>
-            {% endfor %}
+            <p> {{ tag }} </p>
+        {% endfor %}
     {% endfor %}
 {% endblock %}
 
