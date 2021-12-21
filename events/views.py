@@ -13,6 +13,8 @@ class HomeTemplateView(TemplateView):
 
 
 def event_create(request):
+    my_variable = 0
+    my_variable = 0
     user = request.user
     profile = Profile.objects.get(user=user)
     form = EventForm()
@@ -25,6 +27,7 @@ def event_create(request):
             return redirect('events-list')
     context = {'form': form}
     return render(request, 'events/event_create.html', context)
+
 
 
 class EventsListView(ListView):
