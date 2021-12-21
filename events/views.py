@@ -13,8 +13,6 @@ class HomeTemplateView(TemplateView):
 
 
 def event_create(request):
-    my_variable = 0
-    my_variable = 0
     user = request.user
     profile = Profile.objects.get(user=user)
     form = EventForm()

@@ -27,8 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_cases.apps.SocialCasesConfig',
-    'events',
-    'users'
+    'events.apps.EventsConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
