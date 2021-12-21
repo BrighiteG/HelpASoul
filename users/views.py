@@ -15,9 +15,8 @@ def register_user(request):
         profile_form = ProfileRegistrationForm(request.POST)
 
         if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save(commit=False)
-            profile = profile_form.save(commit=False)
-            user.save()
+            user = user_form.save()
+            profile = profile_form.save()
             profile.user = user
             profile.save()
             messages.success(request, 'Your account has been created succesfully')
