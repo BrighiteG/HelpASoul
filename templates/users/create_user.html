@@ -6,9 +6,13 @@
             <div class="col-md-6 offset-md-3">
                 <form method="POST">
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="btn btn-primary"> Register user </button>
+                    {{ profile_form.as_p }}
+                    {{ user_form.as_p }}
+{#                    {{ profile_form.phone_nr }}#}
+{#                    {{ profile_form.profile_tags }}#}
+                    <button type="submit" class="btn btn-primary">Register user</button>
                 </form>
             </div>
     </div>
 {% endblock %}
+
