@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, UpdateView, DeleteView
+
 from events.forms import EventForm
 from events.models import Event
 from django.views.generic import TemplateView
@@ -25,7 +26,6 @@ def event_create(request):
             return redirect('events-list')
     context = {'form': form}
     return render(request, 'events/event_create.html', context)
-
 
 
 class EventsListView(ListView):
