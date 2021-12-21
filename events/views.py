@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, UpdateView, CreateView, DeleteView
+from django.views.generic import ListView, UpdateView, DeleteView
 from events.forms import EventForm
 from events.models import Event
 from django.views.generic import TemplateView
@@ -11,25 +11,6 @@ from users.models import Profile
 class HomeTemplateView(TemplateView):
     template_name = 'base.html'
 
-
-class EventsListView(ListView):
-    template_name = 'events/events_list.html'
-    model = Event
-    context_object_name = 'events_list'
-
-
-class EventUpdateView(UpdateView):
-    template_name = 'events/event_update.html'
-    success_url = 'homepage'
-    model = Event
-    form_class = EventForm
-
-
-# class EventCreateView(CreateView):
-#     template_name = 'events/event_create.html'
-#     model = Event
-#     success_url = reverse_lazy('events-list')
-#     form_class = EventForm
 
 def event_create(request):
     user = request.user
@@ -44,6 +25,19 @@ def event_create(request):
             return redirect('events-list')
     context = {'form': form}
     return render(request, 'events/event_create.html', context)
+
+
+class EventsListView(ListView):
+    template_name = 'events/events_list.html'
+    model = Event
+    context_object_name = 'events_list'
+
+
+class EventUpdateView(UpdateView):
+    template_name = 'events/event_update.html'
+    success_url = 'events-list'
+    model = Event
+    form_class = EventForm
 
 
 class EventDeleteView(DeleteView):

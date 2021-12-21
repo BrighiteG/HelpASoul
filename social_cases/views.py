@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView
-
 from social_cases.forms import SocialCaseForm
 from social_cases.models import SocialCase
 

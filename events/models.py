@@ -1,12 +1,11 @@
+from typing import TYPE_CHECKING
 from django.contrib.auth.models import User
 from django.db import models
-
 from users.models import Profile
 
 
 class Tag(models.Model):
     name = models.CharField(max_length=200)
-    social_case_organizer = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.name)
