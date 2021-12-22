@@ -6,7 +6,7 @@
 
     <div class="row">
     <div class="row cold-md6 offset-md-3">
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn btn-primary">Update</button>

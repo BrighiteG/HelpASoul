@@ -1,14 +1,15 @@
 from typing import TYPE_CHECKING
 from django.contrib.auth.models import User
 from django.db import models
+from users.models import Profile
 if TYPE_CHECKING:
-    from users.models import Profile
+
     from events.models import Tag
 
 
 class SocialCase(models.Model):
     title = models.CharField(max_length=200)
-    user = models.ForeignKey('users.Profile', on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     description = models.TextField(null=True, blank=False)
     created = models.DateTimeField(auto_now_add=True)
     profile_image = models.ImageField(upload_to='static/images/', default='static/images/Aesthetic-Desktop-Wallpaper.jpg')
