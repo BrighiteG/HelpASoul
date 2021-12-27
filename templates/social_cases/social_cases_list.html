@@ -4,6 +4,7 @@
 {% block title %} Social Cases {% endblock %}
 
 {% block content %}
+    <div style="padding-top: 200px">
      <a href="{% url 'create-social-case' %}" class="text-info">Create a new Social Case</a>
     {% for case in social_cases_list %}
         <img src="{{ case.profile_image.url }}" style="width: 50px">
@@ -12,7 +13,7 @@
             <a href="{% url 'update-social-case' case.id %}" class="text-info">Update Data</a>
             <a href="{% url 'delete-social-case' case.id %}" class="text-info">Delete social case</a>
     {% endfor %}
-
+    </div>
 
 {% endblock %}
 

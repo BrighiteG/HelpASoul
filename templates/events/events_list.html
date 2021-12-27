@@ -4,6 +4,7 @@
 {% block title %} List of Events {% endblock %}
 
 {% block content %}
+    <div style="padding-top: 200px">
     <a href="{% url 'event-create' %}" class="btn btn-primary">Create Event</a>
     {% for event in events_list %}
         <img src="{{ event.profile_image.url }}" style="width: 50px">
@@ -15,6 +16,7 @@
             <p> {{ tag }} </p>
         {% endfor %}
     {% endfor %}
+    </div>
 {% endblock %}
 
 
