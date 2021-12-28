@@ -79,6 +79,23 @@
                     </div><!-- /.cause-card -->
                 {% endfor %}
             </div><!-- /.container -->
+             <div>
+            <ul class="list-unstyled post-pagination d-flex justify-content-center align-items-center">
+                    {% if social_cases_list.has_previous %}
+                <li><a href="?page={{ social_cases_list.previous_page_number }}"><i class="far fa-angle-left"></i></a></li>
+                    {% endif %}
+                    {% for page in custom_range %}
+                        {% if page == social_cases_list.number %}
+                            <li ><a href="?page={{ page }}" class="btn-warning" >{{ page }}</a></li>
+                         {% else %}
+                            <li><a href="?page={{ page }}">{{ page }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                         {% if social_cases_list.has_next %}
+                <li><a href="?page={{ social_cases_list.next_page_number }}"><i class="far fa-angle-right"></i></a></li>
+                    {% endif %}
+                </ul><!-- /.post-pagination -->
+                </div>
         </div>
     </section>
 
