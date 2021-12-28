@@ -1062,6 +1062,9 @@
   transition: transform 500ms ease, opacity 500ms ease;
   transition: transform 500ms ease, opacity 500ms ease, -webkit-transform 500ms ease;
 }
+.image_container {
+  width: 100%;
+}
 
 .cause-card:hover .cause-card__image > img {
   opacity: 0.5;
@@ -3616,8 +3619,8 @@ h6 {
   left: 0;
   right: 0;
   bottom: 0;
-  -webkit-filter: grayscale(100%);
-          filter: grayscale(100%);
+  /*-webkit-filter: grayscale(100%);*/
+  /*        filter: grayscale(100%);*/
   opacity: 0.2;
   background-repeat: no-repeat;
   background-size: cover;
@@ -7494,3 +7497,9 @@ h6 {
   color: var(--thm-black);
 }
 /*# sourceMappingURL=main.css.map */
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
