@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block title %} Event Details {% endblock %}
+{% load static %}
+
+{% block content %}
+ <div class="stricky-header stricked-menu">
+            <div class="container">
+                <div class="logo-box">
+                    <a href="{% url 'homepage' %}"><img src="{% static 'images/logo-light.png' %}" width="101" alt=""></a>
+                </div><!-- /.logo-box -->
+                <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+            </div><!-- /.container -->
+        </div><!-- /.stricky-header -->
+        <section class="page-header">
+            <div class="page-header__bg" style="background-image: url({% static 'images/backgrounds/page-header-1-1.jpg' %});"></div>
+            <!-- /.page-header__bg -->
+            <div class="container">
+                <h2>Events Details</h2>
+                <ul class="thm-breadcrumb list-unstyled dynamic-radius">
+                    <li><a href="{% url 'homepage' %}">Home</a></li>
+                    <li>-</li>
+                    <li><span>Events</span></li>
+                </ul><!-- /.thm-breadcrumb list-unstyled -->
+            </div><!-- /.container -->
+        </section><!-- /.page-header -->
+
+        <section class="event-details pt-120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <h3> {{ event.title }}</h3>
+                        <p>{{ event.description }}</p>
+                        <p> Organizator: {{ event.organizer }}</p>
+                    </div><!-- /.col-md-12 -->
+                    <div class="col-md-12 col-lg-6">
+                        <img src="{{ event.profile_image.url }}" alt="image" width="512px" height="571x">
+                    </div><!-- /.col-md-12 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section><!-- /.event-details -->
+
+        <div class="event-infos pt-20 pb-90">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-4 mb-30">
+                        <div class="event-infos__single background-secondary">
+                            <h3>Venue</h3>
+                            <p>Neque porro quisquam est, qui dolorem ipsum quiaolor sit amet adipisci veli sed quiae.</p>
+                            <ul class="list-unstyled event-infos__list">
+                                <li> Start date: {{ event.start_date }}</li>
+                                <li> End Date: {{ event.end_date }} </li>
+                                <li>New York</li>
+                            </ul><!-- /.list-unstyled event-infos__list -->
+                            <div class="event-infos__social">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-facebook-square"></i></a>
+                                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div><!-- /.footer-social -->
+                        </div><!-- /.event-infos__single -->
+                    </div><!-- /.col-md-12 col-lg-4 mb-30 -->
+
+                    <div class="col-md-12 col-lg-4 mb-30">
+                        <div class="google-map__event">
+                            <iframe title="template google map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4562.753041141002!2d-118.80123790098536!3d34.152323469614075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80e82469c2162619%3A0xba03efb7998eef6d!2sCostco+Wholesale!5e0!3m2!1sbn!2sbd!4v1562518641290!5m2!1sbn!2sbd" class="map__event" allowfullscreen></iframe>
+                        </div><!-- /.google-map -->
+                    </div><!-- /.col-md-12 col-lg-4 mb-30 -->
+
+                    <div class="col-md-12 col-lg-4 mb-30">
+                        <div class="event-infos__single background-special">
+                            <h3>Organizer</h3>
+                            <p>Neque porro quisquam est, qui dolorem ipsum quiaolor sit amet adipisci veli sed quiae.</p>
+                            <ul class="list-unstyled event-infos__list event-infos__list-has-icons">
+                                <li>
+                                    <i class="azino-icon-telephone"></i>
+                                    <a href="tel:6668880000">666 888 0000</a>
+                                </li>
+                                <li>
+                                    <i class="azino-icon-email"></i>
+                                    <a href="mailto:info@azino.com">info@azino.com</a>
+                                </li>
+                                <li>
+                                    <i class="azino-icon-pin"></i>
+                                    88 top broklyn street road new york, USA
+                                </li>
+                            </ul><!-- /.list-unstyled event-infos__list event-infos__list-has-icons -->
+                        </div><!-- /.event-infos__single -->
+                    </div><!-- /.col-md-12 col-lg-4 mb-30 -->
+                </div><!-- /.row -->
+
+
+            </div>
+                    <!-- /.search-popup__content -->
+        </div>
+             <!-- /.search-popup -->
+
+{#    <script src="assets/js/jquery-3.5.1.min.js"></script>#}
+{#    <script src="assets/js/bootstrap.bundle.min.js"></script>#}
+{#    <script src="assets/js/swiper.min.js"></script>#}
+{#    <script src="assets/js/jquery.ajaxchimp.min.js"></script>#}
+{#    <script src="assets/js/jquery.magnific-popup.min.js"></script>#}
+{#    <script src="assets/js/jquery.validate.min.js"></script>#}
+{#    <script src="assets/js/bootstrap-select.min.js"></script>#}
+{#    <script src="assets/js/wow.js"></script>#}
+{#    <script src="assets/js/odometer.min.js"></script>#}
+{#    <script src="assets/js/jquery.appear.min.js"></script>#}
+{#    <!-- template js -->#}
+{#    <script src="assets/js/theme.js"></script>#}
+
+
+
+{% endblock %}
