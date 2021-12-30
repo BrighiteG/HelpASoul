@@ -4,79 +4,19 @@
 {% block title %} List of Events {% endblock %}
 
 {% block content %}
-    <body>
-    <div class="preloader">
-        <img class="preloader__image" src="{% static 'images/loader.png' %}" alt="">
-    </div><!-- /.preloader -->
-
-     <div class="stricky-header stricked-menu">
-            <div class="container">
-                <div class="logo-box">
-                    <a href="{% url 'homepage' %}"><img src="{% static 'images/logo-light.phn' %}" width="101" alt=""></a>
-                </div><!-- /.logo-box -->
-                <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
-            </div><!-- /.container -->
-        </div><!-- /.stricky-header -->
-        <section class="page-header" style="align-content: center">
-            <div class="page-header__bg"
-                 style="background-image: url({% static 'images/backgrounds/happy_children.jpg' %});"></div>
-            <!-- /.page-header__bg -->
-            <div class="container">
-                <h2>Events Page</h2>
-                <ul class="thm-breadcrumb list-unstyled dynamic-radius">
-                    <li><a href="{% url 'homepage' %}">Home</a></li>
-                    <li>-</li>
-                    <li><span>Events</span></li>
-                </ul><!-- /.thm-breadcrumb list-unstyled -->
-            </div><!-- /.container -->
-
-
-            <div class="page-header center" style="background-color: transparent;">
-                <div class="footer-widget__newsletter center" style="width: 500px;">
-                    <form action="{% url 'events-list' %}" method="get" >
-                        <label for="formInputsearch" class="sr-only">Search</label>
-                        <input id='formInputsearch' type="text" value="{{ search_query }}" name="search_query"
-                               placeholder="Search" style="border-radius: 40px; text-align: left;">
-                    </form>
-                </div>
-            </div>
-            </section><!-- /.page-header -->
-
-            <section class="event-page pt-120 pb-120">
-            <div class="container">
-                <div class="event-grid">
-                    {% for event in events_list %}
-                    <div class="event-card">
-                        <div class="event-card-inner">
-                            <div class="event-card-image">
-                                <div class="event-card-image-inner">
-                                    <img src="{{ event.profile_image.url }}" alt="picture" width="130" height="20px">
-                                    <span> {{ event.start_date }}</span>
-                                </div><!-- /.event-card-image-inner -->
-                            </div><!-- /.event-card-image -->
-                            <div class="event-card-content">
-                                <h3><a href="{% url 'event-detail-view' event.id %}"> {{ event.title }}</a></h3>
-                                <ul class="event-card-list">
-                                    <li>
-                                        <i class="azino-icon-clock"></i>
-                                        <strong>Start date: </strong> {{ event.start_date}} <br>
-                                        <strong>End date: </strong> {{ event.end_date}}
-                                    </li>
-                                    <li>
-                                        <i class="azino-icon-pin1"></i>
-                                        <strong>Location:</strong> {{ event.description|slice:'20'}} <br>
-                                        {% for tag in event.event_tags.all %}
-                                            <span>{{ tag }}</span>
-                                            {% endfor %}
-                                    </li>
-                                </ul><!-- /.event-card-list -->
-                            </div><!-- /.event-card-content -->
-                        </div><!-- /.event-card-inner -->
-                    </div><!-- /.event-card -->
-                    {% endfor %}
-                </div>
-            </div>
-            </section>
+    <div style="padding-top: 200px">
+    <a href="{% url 'event-create' %}" class="btn btn-primary">Create Event</a>
+    {% for event in events_list %}
+        <img src="{{ event.profile_image.url }}" style="width: 50px">
+        <p>Event: {{ event.title }} {{ event.organizer }}</p>
+        <p> About: {{ event.description }} </p>
+        <a href="{% url 'event-update' event.id %}" class="text-info">Update Data</a>
+        <a href="{% url 'event-delete' event.id %}" class="btn btn-danger">Delete Event</a>
+        {%  for tag in event.tags.set.all %}
+            <p> {{ tag }} </p>
+        {% endfor %}
+    {% endfor %}
+    </div>
 {% endblock %}
 
 

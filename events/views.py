@@ -1,10 +1,9 @@
-from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, UpdateView, DeleteView, DetailView
+from django.views.generic import ListView, UpdateView, DeleteView
 
 from events.forms import EventForm
-from events.models import Event, Tag
+from events.models import Event
 from django.views.generic import TemplateView
 
 from users.models import Profile
@@ -29,16 +28,10 @@ def event_create(request):
     return render(request, 'events/event_create.html', context)
 
 
-def event_list_view(request):
-    search_query = ''
-    if request.GET.get('search_query'):
-        search_query = request.GET.get('search_query')
-    tags = Tag.objects.filter(name__icontains=search_query)
-    events = Event.objects.distinct().filter(Q(title__icontains=search_query) |
-                                             Q(description__icontains=search_query) |
-                                             Q(event_tags__in=tags))
-    context = {'events_list': events, 'search_query': search_query}
-    return render(request, 'events/events_list.html', context)
+class EventsListView(ListView):
+    template_name = 'events/events_list.html'
+    model = Event
+    context_object_name = 'events_list'
 
 
 class EventUpdateView(UpdateView):
@@ -52,8 +45,3 @@ class EventDeleteView(DeleteView):
     template_name = 'events/event_delete.html'
     model = Event
     success_url = reverse_lazy('events-list')
-
-
-class EventDetailView(DetailView):
-    template_name = 'events/event_detail_view.html'
-    model = Event
