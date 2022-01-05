@@ -30,3 +30,5 @@ def register_user(request):
     return render(request, 'users/create_user.html', context)
 
 
+def about_us(request):
+    return render(request, 'users/about_us.html')
