@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import login
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 
 from users.forms import UserRegistrationForm, ProfileRegistrationForm
@@ -28,5 +29,32 @@ def register_user(request):
 
     context = {'page': page, 'user_form': user_form, 'profile_form': profile_form}
     return render(request, 'users/create_user.html', context)
+
+
+def contact_us(request):
+    if request.method == "POST":
+        sender_name = request.POST['name']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        subject = request.POST['subject']
+        message = request.POST['message']
+
+        #send mail
+        send_mail(
+            subject, #the subject of the mail
+            message,  # the message of the mail
+            'helpasoul24@gmail.com',
+            ['m.sergiu01@gmail.com'],
+        )
+        print('mail was sent')
+        return render(request, 'users/contact_us.html', {'subject': subject})
+
+    return render(request, 'users/contact_us.html')
+
+def contact_us_success(request):
+    return render(request, 'users/contact_us_success.html')
+
+
+
 
 
