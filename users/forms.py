@@ -23,5 +23,5 @@ class ProfileRegistrationForm(forms.ModelForm):
         widgets = {
             'phone_nr': TextInput(attrs={'placeholder': 'Introduceți prenumele dvs.', 'class': 'form-control'}),
             'location': TextInput(attrs={'placeholder': 'Introduceți numele dvs.', 'class': 'form-control'}),
-            'profile_tags': CheckboxSelectMultiple(attrs={'class': 'form-control'}),
+            # 'profile_tags': CheckboxSelectMultiple(attrs={'class': 'form-control'}),
         }

@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %} Register User {% endblock %}
 
 {% block content %}
-    <div class="row">
+    <div class="row" style="padding-top: 300px; padding-bottom: 250px">
             <div class="col-md-6 offset-md-3">
                 <form method="POST">
                     {% csrf_token %}
-                    {{ profile_form.as_p }}
                     {{ user_form.as_p }}
-{#                    {{ profile_form.phone_nr }}#}
-{#                    {{ profile_form.profile_tags }}#}
+                    {{ profile_form.as_p }}
                     <button type="submit" class="btn btn-primary">Register user</button>
                 </form>
             </div>

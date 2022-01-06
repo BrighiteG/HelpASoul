@@ -6,6 +6,12 @@ from django.shortcuts import render, redirect
 from users.forms import UserRegistrationForm, ProfileRegistrationForm
 
 
+def homepage(request):
+    return render(request, 'index.html')
+
+
+
+
 def register_user(request):
     page = 'create-user'
     if request.method == 'GET':
@@ -33,9 +39,6 @@ def register_user(request):
 
 def contact_us(request):
     if request.method == "POST":
-        sender_name = request.POST['name']
-        email = request.POST['email']
-        phone = request.POST['phone']
         subject = request.POST['subject']
         message = request.POST['message']
 
