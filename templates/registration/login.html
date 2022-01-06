@@ -2,7 +2,9 @@
 {% block title %} Login {% endblock %}
 
 {% block content %}
-    <div class="col-md-6 offset-md-3">
+
+
+    <div class="col-md-6 offset-md-3" style="padding-top: 400px; padding-bottom: 250px">
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
@@ -11,3 +13,4 @@
         </form>
     </div>
 {% endblock %}
+

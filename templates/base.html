@@ -33,16 +33,16 @@
     <link rel="stylesheet" href="{% static 'css/rtl.css' %}">
 </head>
 <body>
-<div class="preloader">
-        <img class="preloader__image" src="{% static 'images/loader.png' %}" alt="">
-    </div><!-- /.preloader -->
+{#<div class="preloader">#}
+{#        <img class="preloader__image" src="{% static 'images/loader.png' %}" alt="">#}
+{#    </div><!-- /.preloader -->#}
  <header class="main-header">
             <div class="container">
                 <div class="inner-container">
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-2">
                             <div class="logo-box">
-                                <a href="index.html" aria-label="logo image"><img src="{% static 'images/logo-dark.png' %}"
+                                <a href="{% url 'home_page' %}" aria-label="logo image"><img src="{% static 'images/logo-dark.png' %}"
                                         width="200px" alt=""></a>
                                 <span class="fa fa-bars mobile-nav__toggler"></span>
                             </div><!-- /.logo-box -->
@@ -50,23 +50,28 @@
                         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-10 d-none d-md-none d-lg-none d-xl-block">
                             <div class="main-header__top">
                                 <p>Welcome to non profit charity platform</p>
-                                <div class="main-header__social">
-                                    <a href="#" aria-label="twitter"><i class="fab fa-twitter"></i></a>
-                                    <a href="#" aria-label="facebook"><i class="fab fa-facebook-square"></i></a>
-                                    <a href="#" aria-label="pinterest"><i class="fab fa-pinterest-p"></i></a>
-                                    <a href="#" aria-label="instagram"><i class="fab fa-instagram"></i></a>
+                                <div>
+                                     {% if user.is_authenticated %}
+                                    <a href="{% url 'logout' %}" class="thm-btn" role="button" aria-pressed="true" style="border-radius: 20px" >Logout</a>
+                                     {% else %}
+                                         <a href="{% url 'login' %}" class="thm-btn" role="button" aria-pressed="true" style="border-radius: 20px" >Login</a>
+                                         <a href="{% url 'create-user' %}" class="thm-btn" role="button" aria-pressed="true" style="border-radius: 20px" >Register</a>
+                                    {% endif %}
+
                                 </div><!-- /.main-header__social -->
                             </div><!-- /.main-header__top -->
-                            <nav class="main-menu ">
+                                <div class="main-menu">
+                                </div>
+                            <nav class="main-menu">
                                 <ul class="main-menu__list">
                                     <li class="dropdown">
-                                        <a href="index.html">Home</a>
+                                        <a href="{% url 'home_page' %}">Home</a>
                                     </li>
                                     <li class="dropdown">
                                         <a href="index.html">About Us</a>
                                     </li>
                                     <li class="dropdown">
-                                        <a href="{% url 'social-cases' %}">Social Cases</a>
+                                        <a href="{% url 'social-cases' %}?page=1">Social Cases</a>
                                         <ul>
                                             <li><a href="{% url 'create-social-case' %}">Create Social Case</a></li>
                                             <li><a href="causes.html">Animals</a></li>
@@ -90,7 +95,8 @@
                                     </li>
                                     <li class="dropdown"><a href="#">Gallery</a>
                                     </li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="{% url 'contact-us' %}">Contact</a></li>
+
                                 </ul>
                                 <!-- /.main-menu__list -->
                             </nav>
@@ -131,7 +137,7 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="footer-widget mb-40 footer-widget__about">
-                                <a href="index.html" aria-label="logo image">
+                                <a href="{% url 'home_page' %}" aria-label="logo image">
                                     <img src="{% static 'images/logo-white.png' %}" class="footer-widget__logo" width="150"
                                         alt="">
                                 </a>
@@ -223,7 +229,8 @@
     <script src="{% static 'js/wow.js' %}"></script>
     <script src="{% static 'js/odometer.min.js' %}"></script>
     <script src="{% static 'js/jquery.appear.min.js' %}"></script>
+    <script src="{% static 'bootstrap-select.js.map' %}"></script>
     <!-- template js -->
-
     <script src="{% static 'js/theme.js' %}"></script>
 </body>
+

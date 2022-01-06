@@ -56,6 +56,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'HelpASoul.context_processors.get_all_social_cases',
             ],
         },
     },
@@ -132,8 +133,8 @@ LOGOUT_REDIRECT_URL = '/login/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'brighite.iancu@gmail.com'
-EMAIL_HOST_PASSWORD = 'Foopassword1'
+EMAIL_HOST_USER = 'helpasoul24@gmail.com'
+EMAIL_HOST_PASSWORD = 'sergiustefan1994'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
