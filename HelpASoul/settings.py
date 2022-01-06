@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'social_cases.apps.SocialCasesConfig',
     'events.apps.EventsConfig',
     'users.apps.UsersConfig',
+    'blog.apps.BlogConfig'
 ]
 
 MIDDLEWARE = [
