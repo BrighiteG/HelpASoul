@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Gallery{% endblock %}
+
+{% block content %}
+        <div class="stricky-header stricked-menu">
+            <div class="container">
+                <div class="logo-box">
+                    <a href={% url 'homepage' %}><img src="{% static 'images/logo-light.png' %}" width="101" alt=""></a>
+                </div><!-- /.logo-box -->
+                <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+            </div><!-- /.container -->
+        </div><!-- /.stricky-header -->
+        <section class="page-header">
+            <div class="page-header__bg" style="background-image: url({% static 'images/backgrounds/page-header-1-1.jpg' %});"></div>
+            <!-- /.page-header__bg -->
+            <div class="container">
+                <h2>Gallery Page</h2>
+                <ul class="thm-breadcrumb list-unstyled dynamic-radius">
+                    <li><a href={% url 'homepage' %}>Home</a></li>
+                    <li>-</li>
+                    <li><span>Gallery</span></li>
+                </ul><!-- /.thm-breadcrumb list-unstyled -->
+            </div><!-- /.container -->
+        </section><!-- /.page-header -->
+        <section class="gallery-page pt-120 pb-120">
+            <div class="container">
+                <div class="gallery-3-col">
+                    <div class="gallery-card">
+                        <img src="{% static 'images/gallery/picture_1.jpg' %}" class="img-fluid" alt="">
+                        <div class="gallery-content">
+                            <a href={% static 'images/gallery/picture_1.jpg' %} class="img-popup" aria-label="open image"><i class="fal fa-plus"></i></a>
+                        </div><!-- /.gallery-content -->
+                    </div><!-- /.gallery-card -->
+
+                    <div class="gallery-card">
+                        <img src="{% static 'images/gallery/gallery-1-2.jpg' %}" class="img-fluid" alt="">
+                        <div class="gallery-content">
+                            <a href={% static 'images/gallery/gallery-1-2.jpg' %} class="img-popup" aria-label="open image"><i class="fal fa-plus"></i></a>
+                        </div><!-- /.gallery-content -->
+                    </div><!-- /.gallery-card -->
+
+                    <div class="gallery-card">
+                        <img src="{% static 'images/gallery/gallery-1-3.jpg' %}" class="img-fluid" alt="">
+                        <div class="gallery-content">
+                            <a href={% static 'images/gallery/gallery-1-3.jpg' %} class="img-popup" aria-label="open image"><i class="fal fa-plus"></i></a>
+                        </div><!-- /.gallery-content -->
+                    </div><!-- /.gallery-card -->
+
+                    <div class="gallery-card">
+                        <img src="{% static 'images/gallery/gallery-1-4.jpg' %}" class="img-fluid" alt="">
+                        <div class="gallery-content">
+                            <a href={% static 'images/gallery/gallery-1-4.jpg' %} class="img-popup" aria-label="open image"><i class="fal fa-plus"></i></a>
+                        </div><!-- /.gallery-content -->
+                    </div><!-- /.gallery-card -->
+
+                    <div class="gallery-card">
+                        <img src="{% static 'images/gallery/gallery-1-5.jpg' %}" class="img-fluid" alt="">
+                        <div class="gallery-content">
+                            <a href={% static 'images/gallery/gallery-1-5.jpg' %} class="img-popup" aria-label="open image"><i class="fal fa-plus"></i></a>
+                        </div><!-- /.gallery-content -->
+                    </div><!-- /.gallery-card -->
+
+                    <div class="gallery-card">
+                        <img src="{% static 'images/gallery/gallery-1-6.jpg' %}" class="img-fluid" alt="">
+                        <div class="gallery-content">
+                            <a href={% static 'images/gallery/gallery-1-6.jpg' %} class="img-popup" aria-label="open image"><i class="fal fa-plus"></i></a>
+                        </div><!-- /.gallery-content -->
+                    </div><!-- /.gallery-card -->
+
+                    <div class="gallery-card">
+                        <img src="{% static 'images/gallery/gallery-1-7.jpg' %}" class="img-fluid" alt="">
+                        <div class="gallery-content">
+                            <a href={% static 'images/gallery/gallery-1-7.jpg' %} class="img-popup" aria-label="open image"><i class="fal fa-plus"></i></a>
+                        </div><!-- /.gallery-content -->
+                    </div><!-- /.gallery-card -->
+
+                    <div class="gallery-card">
+                        <img src="{% static 'images/gallery/gallery-1-8.jpg' %}" class="img-fluid" alt="">
+                        <div class="gallery-content">
+                            <a href={% static 'images/gallery/gallery-1-8.jpg' %} class="img-popup" aria-label="open image"><i class="fal fa-plus"></i></a>
+                        </div><!-- /.gallery-content -->
+                    </div><!-- /.gallery-card -->
+
+                    <div class="gallery-card">
+                        <img src="{% static 'images/gallery/gallery-1-9.jpg' %}" class="img-fluid" alt="">
+                        <div class="gallery-content">
+                            <a href={% static 'images/gallery/gallery-1-9.jpg' %} class="img-popup" aria-label="open image"><i class="fal fa-plus"></i></a>
+                        </div><!-- /.gallery-content -->
+                    </div><!-- /.gallery-card -->
+
+
+                </div><!-- /.gallery-3-col -->
+            </div><!-- /.container -->
+        </section><!-- /.gallery-page -->
+
+{% endblock %}

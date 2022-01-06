@@ -32,3 +32,7 @@ def register_user(request):
 
 def about_us(request):
     return render(request, 'users/about_us.html')
+
+
+def gallery(request):
+    return render(request, 'users/gallery.html')
