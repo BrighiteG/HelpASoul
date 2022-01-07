@@ -24,3 +24,4 @@ class Donation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     social_case = models.ForeignKey(SocialCase, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=5, decimal_places=2)
+

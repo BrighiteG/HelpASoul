@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import login
 from django.core.mail import send_mail
@@ -10,10 +11,7 @@ def homepage(request):
     return render(request, 'index.html')
 
 
-
-
 def register_user(request):
-    page = 'create-user'
     if request.method == 'GET':
         user_form = UserRegistrationForm()
         profile_form = ProfileRegistrationForm()
@@ -26,14 +24,22 @@ def register_user(request):
             profile = profile_form.save()
             profile.user = user
             profile.save()
-            messages.success(request, 'Your account has been created succesfully')
+
+            subject = 'Welcome to HelpASoul'
+            message = 'We are glad you care about others and chose to be part of our community!'
+            send_mail(
+                subject,
+                message,
+                settings.EMAIL_HOST_USER,
+                [user.email]
+            )
 
             login(request, user)
             return redirect('homepage')
         else:
             messages.error(request, 'An error has occured during registration')
 
-    context = {'page': page, 'user_form': user_form, 'profile_form': profile_form}
+    context = {'user_form': user_form, 'profile_form': profile_form}
     return render(request, 'users/create_user.html', context)
 
 
@@ -50,7 +56,6 @@ def contact_us(request):
         subject = request.POST['subject']
         message = request.POST['message']
 
-        #send mail
         send_mail(
             subject, #the subject of the mail
             message,  # the message of the mail
@@ -65,8 +70,4 @@ def contact_us(request):
 
 def contact_us_success(request):
     return render(request, 'users/contact_us_success.html')
-
-
-
-
 

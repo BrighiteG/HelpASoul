@@ -13,7 +13,7 @@ class Profile(models.Model):
     is_volunteer = models.BooleanField(default=False)
     profile_tags = models.ManyToManyField('events.Tag')
 
+
+
     def __str__(self):
         return str(self.location)
-
-

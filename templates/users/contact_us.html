@@ -43,22 +43,21 @@
                         </div><!-- /.contact-page__content -->
                     </div><!-- /.col-lg-5 -->
                     {% if subject %}
-                    <div>
-                        <h2> Thank you for sending the following email:!</h2>
-                        <p>{{ subject }}</p>
+                    <div class="col-lg-7">
+                        <h2> Thank you for your message, we will reach out to you as soon as possible!</h2>
                     </div>
                     {% else %}
                     <div class="col-lg-7">
-                        <form action="" method="POST" class="contact-form-validated contact-page__form form-one mb-40">
+                        <form action="" method="POST" class=" contact-page__form form-one mb-40">
                             {% csrf_token %}
                             <div class="form-group">
                                 <div class="form-control">
                                     <label for="subject" class="sr-only">subject</label>
-                                    <input type="text" name="subject" placeholder="Subject">
+                                    <input type="text" name="subject" placeholder="Subject" required>
                                 </div><!-- /.form-control -->
                                 <div class="form-control form-control-full">
                                     <label for="message" class="sr-only">message</label>
-                                    <textarea name="message" placeholder="Write a Message" ></textarea>
+                                    <textarea name="message" placeholder="Write a Message" required></textarea>
                                 </div><!-- /.form-control -->
                                 <div class="form-control form-control-full">
                                     <button type="submit" class="thm-btn dynamic-radius">Send Message</button>
