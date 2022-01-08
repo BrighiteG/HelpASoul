@@ -6,7 +6,8 @@ from django.views.generic import DetailView, DeleteView
 from blog.forms import BlogForm
 from blog.models import Blog
 from events.models import Tag
-from users.models import Profile
+from social_cases.forms import ReviewForm
+from users.models import Profile, Review
 
 
 def blog_create(request):
@@ -37,9 +38,18 @@ def blog_list_view(request):
     return render(request, 'blogs/blog_list.html', context)
 
 
-class BlogDetailView(DetailView):
-    template_name = 'blogs/blog_detail_view.html'
-    model = Blog
+def blog_detail_view(request, pk):
+    blog = Blog.objects.get(id=pk)
+    comments = Review.objects.filter(blog_comment_id=pk)
+    form = ReviewForm()
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        comment = form.save(commit=False)
+        comment.blog_comment = blog
+        comment.save()
+        return redirect('blog-detail-view', pk=blog.id)
+    context = {'blog': blog, 'form': form, 'comments': comments}
+    return render(request, 'blogs/blog_detail_view.html', context)
 
 
 class BlogDeleteView(DeleteView):

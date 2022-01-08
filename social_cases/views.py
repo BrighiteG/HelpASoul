@@ -73,7 +73,8 @@ class SocialCaseDeleteView(DeleteView):
 #     template_name = 'social_cases/social_case_detail_view.html'
 #     model = SocialCase
 
-def social_case_detail(request,pk):
+
+def social_case_detail(request, pk):
 
     social_case = SocialCase.objects.get(id=pk)
     comments = Review.objects.filter(social_case_id=pk)

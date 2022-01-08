@@ -16,6 +16,7 @@ class SocialCaseForm(forms.ModelForm):
             'profile_image': FileInput(attrs={'placeholder': 'Adaugati o poza cazului social'})
         }
 
+
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review

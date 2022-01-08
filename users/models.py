@@ -2,6 +2,7 @@ from typing import TYPE_CHECKING
 from django.contrib.auth.models import User
 from django.db import models
 
+
 if TYPE_CHECKING:
     from events.models import Tag
     from social_cases.models import SocialCase
@@ -20,6 +21,8 @@ class Profile(models.Model):
 
 class Review(models.Model):
     social_case = models.ForeignKey('social_cases.SocialCase', on_delete=models.CASCADE, null=True, blank=True)
+    blog_comment = models.ForeignKey('blog.Blog', on_delete=models.CASCADE, null=True, blank=True)
+    event_comment = models.ForeignKey('events.Event', on_delete=models.CASCADE, null=True, blank=True)
     name = models.TextField(max_length=100, null=True)
     body = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)

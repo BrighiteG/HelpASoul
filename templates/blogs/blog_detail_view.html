@@ -61,45 +61,30 @@
                             <a href="#">Our donation is hope for poor children</a>
                             <a href="#">Fundraising for Early Childhood Rise</a>
                         </div><!-- /.blog-navigations -->
+
                         <h3 class="blog-details__title">2 comments</h3><!-- /.blog-details__title -->
-                        <div class="comment-one">
+                            {% for comment in comments %}
+                            <div class="comment-one">
                             <div class="comment-one__single">
                                 <img src="{% static 'images/blog/comment-1-1.jpg' %}" alt="">
-                                <h3>Jessica Brown</h3>
-                                <p class="comment-one__date">20 May, 2020 . 4:00 pm</p>
-                                <p>Lorem Ipsum is simply dummy free text of the available printing and typesetting been the
-                                    industry standard dummy text ever sincere condimentum purus.</p>
+                                <h3> {{ comment.name }}</h3>
+                                <p class="comment-one__date"> {{ comment.created }}</p>
+                                <p>{{ comment.body }}</p>
                                 <a href="#" class="thm-btn dynamic-radius">Reply</a><!-- /.thm-btn dynamic-radius -->
                             </div><!-- /.comment-one__single -->
+                            </div><!-- /.comment-one -->
+                            {% endfor %}
 
-                            <div class="comment-one__single">
-                                <img src="{% static 'images/blog/comment-1-1.jpg' %}" alt="">
-                                <h3>Jessica Brown</h3>
-                                <p class="comment-one__date">20 May, 2020 . 4:00 pm</p>
-                                <p>Lorem Ipsum is simply dummy free text of the available printing and typesetting been the
-                                    industry standard dummy text ever sincere condimentum purus.</p>
-                                <a href="#" class="thm-btn dynamic-radius">Reply</a><!-- /.thm-btn dynamic-radius -->
-                            </div><!-- /.comment-one__single -->
-
-                        </div><!-- /.comment-one -->
                         <h3 class="blog-details__title">Leave a comment</h3><!-- /.blog-details__title -->
-                        <form action="assets/inc/sendemail.php" class="contact-form-validated contact-page__form form-one mb-80">
+                        <form action="{% url 'blog-detail-view' blog.id  %}" class="contact-page__form form-one mb-80" method="POST">
+                            {% csrf_token %}
                             <div class="form-group">
-                                <div class="form-control">
-                                    <input type="text" name="name" placeholder="Your Name">
-                                </div><!-- /.form-control -->
-                                <div class="form-control">
-                                    <input type="text" name="email" placeholder="Email Address">
-                                </div><!-- /.form-control -->
-                                <div class="form-control">
-                                    <input type="text" name="phone" placeholder="Phone Number">
-                                </div><!-- /.form-control -->
-                                <div class="form-control">
-                                    <input type="text" name="subject" placeholder="Subject">
-                                </div><!-- /.form-control -->
-                                <div class="form-control form-control-full">
-                                    <textarea name="message" placeholder="Write a Message"></textarea>
-                                </div><!-- /.form-control -->
+                                {% for field in form %}
+                                    <div class="form-control">
+                                        {{ field }}
+                                    </div><!-- /.form-control -->
+                                {% endfor %}
+
                                 <div class="form-control form-control-full">
                                     <button type="submit" class="thm-btn dynamic-radius">Submit Comment</button>
                                     <!-- /.thm-btn dynamic-radius -->
