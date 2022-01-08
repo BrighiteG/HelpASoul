@@ -1,7 +1,8 @@
 from typing import TYPE_CHECKING
 from django.contrib.auth.models import User
 from django.db import models
-from users.models import Profile
+from users.models import Profile, Review
+
 if TYPE_CHECKING:
 
     from events.models import Tag
@@ -15,6 +16,7 @@ class SocialCase(models.Model):
     profile_image = models.ImageField(upload_to='static/images/', default='static/images/Aesthetic-Desktop-Wallpaper.jpg')
     donations = models.IntegerField()
     case_tags = models.ManyToManyField('events.Tag')
+
 
     def __str__(self):
         return str(self.title)

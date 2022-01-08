@@ -7,7 +7,7 @@ urlpatterns = [
     path('social_case_update/<int:pk>/', views.SocialCaseUpdateView.as_view(), name='update-social-case'),
     path('social_case_create/', views.social_case_create, name='create-social-case'),
     path('social_case_delete/<int:pk>/', views.SocialCaseDeleteView.as_view(), name='delete-social-case'),
-    path('social_case_detail/<int:pk>/', views.SocialCaseDetailView.as_view(), name='social_case_detail')
+    path('social_case_detail/<int:pk>/', views.social_case_detail, name='social_case_detail')
 ]
 
 
