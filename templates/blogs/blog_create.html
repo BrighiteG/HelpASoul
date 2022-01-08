@@ -1,19 +1,20 @@
 {% extends 'base.html' %}
-{% block title %} Create Event {% endblock %}
+
+{% block title %} Create blog post {% endblock %}
 
 {% block content %}
-    {% if request.user.is_authenticated %}
-    <div style="padding-top: 100px; padding-bottom: 100px">
+{#    {% if request.user.is_authenticated %}#}
+    <div style="padding-top: 100px; padding-bottom: 50px">
         <div class="row" style="padding-top:200px">
                 <div class="col-md-6 offset-md-3">
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary"> Create event </button>
+                        {{ blog_form.as_p }}
+                        <button type="submit" class="btn btn-primary"> Create blog post </button>
                     </form>
                 </div>
         </div>
     </div>
-    {% endif %}
-{% endblock %}
+{#    {% endif %}#}
 
+{% endblock %}

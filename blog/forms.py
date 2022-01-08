@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import TextInput, DateInput, CheckboxSelectMultiple
+from django.forms import TextInput, CheckboxSelectMultiple
 
 from blog.models import Blog
 

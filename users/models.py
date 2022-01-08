@@ -14,6 +14,4 @@ class Profile(models.Model):
     profile_tags = models.ManyToManyField('events.Tag')
 
     def __str__(self):
-        return str(self.location)
-
-
+        return f"{self.user.first_name}, {self.user.last_name}"

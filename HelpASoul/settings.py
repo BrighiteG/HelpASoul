@@ -57,6 +57,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'HelpASoul.context_processors.get_all_social_cases',
+                'HelpASoul.context_processors.get_all_blog_posts'
             ],
         },
     },
