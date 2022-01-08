@@ -62,17 +62,17 @@
 
                         </div><!-- /.cause-details__content -->
                         <h3 class="blog-details__title">Comments</h3><!-- /.blog-details__title -->
+                         {% for comment in comments %}
                         <div class="comment-one">
 
-                            {% for comment in comments %}
                             <div class="comment-one__single">
                                 <h3>{{comment.name}}</h3>
                                 <p class="comment-one__date">{{ comment.created}}</p>
                                 <p>{{ comment.body }}</p>
-                                <a href="#" class="thm-btn dynamic-radius">Reply</a><!-- /.thm-btn dynamic-radius -->
                             </div><!-- /.comment-one__single -->
-                            {% endfor %}
+
                         </div><!-- /.comment-one -->
+                        {% endfor %}
                         <h3 class="blog-details__title">Leave a comment</h3><!-- /.blog-details__title -->
                         <form action="{% url 'social_case_detail' socialcase.id  %}" class="contact-page__form form-one mb-80" method="POST">
                             {% csrf_token %}
