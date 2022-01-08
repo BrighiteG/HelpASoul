@@ -3,10 +3,10 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView, DetailView
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from events.models import Tag
-from social_cases.forms import SocialCaseForm
+from social_cases.forms import SocialCaseForm, ReviewForm
 from social_cases.models import SocialCase
 from django.db.models import Q
-from users.models import Profile
+from users.models import Profile, Review
 
 
 def social_case_create(request):
@@ -69,11 +69,24 @@ class SocialCaseDeleteView(DeleteView):
     model = SocialCase
     success_url = reverse_lazy('social-cases')
 
-class SocialCaseDetailView(DetailView):
-    template_name = 'social_cases/social_case_detail_view.html'
-    model = SocialCase
+# class SocialCaseDetailView(DetailView):
+#     template_name = 'social_cases/social_case_detail_view.html'
+#     model = SocialCase
 
+def social_case_detail(request,pk):
 
+    social_case = SocialCase.objects.get(id=pk)
+    comments = Review.objects.filter(social_case_id=pk)
+    form = ReviewForm()
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        comment = form.save(commit=False)
+        comment.social_case = social_case
+        comment.save()
+        return redirect('social_case_detail', pk=social_case.id)
+
+    context = {'socialcase': social_case, 'form': form, 'comments': comments }
+    return render(request, 'social_cases/social_case_detail_view.html', context)
 
 
 

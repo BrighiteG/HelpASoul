@@ -63,41 +63,25 @@
                         </div><!-- /.cause-details__content -->
                         <h3 class="blog-details__title">Comments</h3><!-- /.blog-details__title -->
                         <div class="comment-one">
+
+                            {% for comment in comments %}
                             <div class="comment-one__single">
-                                <img src="assets/images/blog/comment-1-1.jpg" alt="">
-                                <h3>Jessica Brown</h3>
-                                <p class="comment-one__date">20 May, 2020 . 4:00 pm</p>
-                                <p>Lorem Ipsum is simply dummy free text of the available printing and typesetting been the
-                                    industry standard dummy text ever sincer condimentum purus.</p>
+                                <h3>{{comment.name}}</h3>
+                                <p class="comment-one__date">{{ comment.created}}</p>
+                                <p>{{ comment.body }}</p>
                                 <a href="#" class="thm-btn dynamic-radius">Reply</a><!-- /.thm-btn dynamic-radius -->
                             </div><!-- /.comment-one__single -->
-                            <div class="comment-one__single">
-                                <img src="assets/images/blog/comment-1-2.jpg" alt="">
-                                <h3>Jessica Brown</h3>
-                                <p class="comment-one__date">20 May, 2020 . 4:00 pm</p>
-                                <p>Lorem Ipsum is simply dummy free text of the available printing and typesetting been the
-                                    industry standard dummy text ever sincer condimentum purus.</p>
-                                <a href="#" class="thm-btn dynamic-radius">Reply</a><!-- /.thm-btn dynamic-radius -->
-                            </div><!-- /.comment-one__single -->
+                            {% endfor %}
                         </div><!-- /.comment-one -->
                         <h3 class="blog-details__title">Leave a comment</h3><!-- /.blog-details__title -->
-                        <form action="assets/inc/sendemail.php" class="contact-form-validated contact-page__form form-one mb-80">
+                        <form action="{% url 'social_case_detail' socialcase.id  %}" class="contact-page__form form-one mb-80" method="POST">
+                            {% csrf_token %}
                             <div class="form-group">
+                                {% for field in form %}
                                 <div class="form-control">
-                                    <input type="text" name="name" placeholder="Your Name">
+                                    {{ field }}
                                 </div><!-- /.form-control -->
-                                <div class="form-control">
-                                    <input type="text" name="email" placeholder="Email Address">
-                                </div><!-- /.form-control -->
-                                <div class="form-control">
-                                    <input type="text" name="phone" placeholder="Phone Number">
-                                </div><!-- /.form-control -->
-                                <div class="form-control">
-                                    <input type="text" name="subject" placeholder="Subject">
-                                </div><!-- /.form-control -->
-                                <div class="form-control form-control-full">
-                                    <textarea name="message" placeholder="Write a Message"></textarea>
-                                </div><!-- /.form-control -->
+                                {% endfor %}
                                 <div class="form-control form-control-full">
                                     <button type="submit" class="thm-btn dynamic-radius">Submit Comment</button>
                                     <!-- /.thm-btn dynamic-radius -->
