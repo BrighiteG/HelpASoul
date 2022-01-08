@@ -2,6 +2,14 @@
 {% load static %}
 {% block content %}
 
+    <div class="stricky-header stricked-menu">
+            <div class="container">
+                <div class="logo-box">
+                    <a href="index.html"><img src="{% static 'images/logo-light.png' %}" width="101" alt=""></a>
+                </div><!-- /.logo-box -->
+                <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+            </div><!-- /.container -->
+        </div><!-- /.stricky-header -->
         <section class="main-slider">
             <div class="swiper-container thm-swiper__slider" data-swiper-options='{"slidesPerView": 1, "loop": true,
     "effect": "fade",
@@ -696,10 +704,6 @@
                 </div><!-- /.container -->
             </section><!-- /.testimonials-two -->
         </div><!-- /.gallery-testimonials-parallax -->
-
-
-
-
         <section class="news-page news-home pt-120 pb-120">
             <div class="container">
                 <div class="row align-items-start align-items-md-center flex-column flex-md-row mb-60">

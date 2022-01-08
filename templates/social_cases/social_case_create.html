@@ -4,12 +4,12 @@
 
 {% block content %}
 
-    <div class="row" style=" padding-top: 200px">
-    <div class="row cold-md6 offset-md-3">
-        <form method="POST" enctype="multipart/form-data">
+    <div class="content-box" style=" padding-top: 250px; padding-bottom: 50px">
+    <div class="cold-md6 offset-md-3">
+        <form method="POST" enctype="multipart/form-data" class="become-volunteer__form form-one " >
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary">Create Social Case</button>
         </form>
 
     </div>
