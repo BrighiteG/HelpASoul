@@ -38,16 +38,23 @@
                                     <div class="cause-card__content">
                                         <div class="cause-card__top">
                                             <div class="cause-card__progress">
-                                                <span style="width: 66%;" class="wow cardProgress" data-wow-duration="1500ms">
-                                                    <b><i>66</i>%</b>
+                                                <span style="width: {{ percent }}%;" class="wow cardProgress" data-wow-duration="1500ms">
+                                                    <b><i></i>{{ percent }}%</b>
                                                 </span>
                                             </div><!-- /.cause-card__progress -->
                                             <div class="cause-card__goals">
-                                                <p><strong>Raised:</strong> $25,270</p>
-                                                <p><strong>Goal:</strong> $30,000</p>
-                                            </div><!-- /.cause-card__goals -->
-                                        </div><!-- /.cause-card__top -->
 
+                                                <p><strong>Raised: {{ socialcase.raised }} RON</strong></p>
+
+                                                <p><strong>Goal:</strong>{{ socialcase.target_donation }} RON</p>
+
+                                            </div><!-- /.cause-card__goals -->
+                                          <div  style="display:flex; flex-direction: row; ">
+                                              {% for tag in socialcase.case_tags.all  %}
+                                                <small>{{tag}}&nbsp;&nbsp;&nbsp;</small>
+                                              {% endfor %}
+                                            </div>
+                                        </div><!-- /.cause-card__top -->
                                     </div><!-- /.cause-card__content -->
                                 </div><!-- /.cause-card__inner -->
                             </div><!-- /.cause-card -->
@@ -89,7 +96,6 @@
                             </div><!-- /.form-group -->
                         </form><!-- /.contact-page__form -->
                         <div class="result"></div><!-- /.result -->
-
 
                     </div><!-- /.col-md-12 col-lg-8 -->
                     <div class="col-md-12 col-lg-4">

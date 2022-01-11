@@ -32,9 +32,32 @@
                            placeholder="Search" style="border-radius: 40px; text-align: left;">
                 </form>
             </div>
+
+        </div>
         </div>
     </section><!-- /.page-header -->
     <section class="causes-page pt-120 pb-120">
+     <div class="page-header center" style="background-color: transparent; padding-top:10px">
+         <div class="footer-widget__newsletter center" style="width: 500px">
+     <form method="get">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="tag1" value="Tag 1" name="search_query">
+                <label class="form-check-label" for="tag1">Tag1</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="tag2" value="Tag 2" name="search_query">
+                <label class="form-check-label" for="tag2">Tag2</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="tag3" value="Tag 3" name="search_query">
+                <label class="form-check-label" for="tag3">Tag3</label>
+            </div>
+                <button type="submit" class="btn-dark">
+                    Search
+                </button>
+            </form>
+         </div>
+      </div>
         <div class="container">
             <div class="causes-col__3">
                 {% for case in social_cases_list %}
@@ -46,23 +69,23 @@
                             <div class="cause-card__content">
                                 <div class="cause-card__top">
                                     <div class="cause-card__progress">
-                                        <span style="width: 80%;" class="wow cardProgress" data-wow-duration="1500ms">
-                                            <b><i>80</i>%</b>
+                                        <span style="width:80%;" class="wow cardProgress" data-wow-duration="1500ms">
+                                            <b><i></i>%</b>
                                         </span>
                                     </div><!-- /.cause-card__progress -->
                                     <div class="cause-card__goals">
-                                        <p><strong>Raised:</strong> $25,270</p>
-                                        <p><strong>Goal:</strong> $30,000</p>
+                                        <p><strong>Raised:{{ case.raised }}</strong></p>
+                                        <p><strong>Goal:{{ case.target_donation }}</strong></p>
                                     </div><!-- /.cause-card__goals -->
                                 </div><!-- /.cause-card__top -->
                                 <h3><a href="{% url 'social_case_detail' case.id %}">{{ case.title|slice:'16' }}</a>
                                 </h3>
                                 <p>{{ case.description|slice:"100" }}</p>
-                                <div class="cause-card__goals">
+                                 <div  style="display:flex; flex-direction: row; padding-bottom: 20px">
                                     {% for tag in case.case_tags.all %}
-                                        <small>{{ tag }}</small>
+                                        <small>{{ tag }}&nbsp;&nbsp;&nbsp;</small>
                                     {% endfor %}
-                                </div><!-- /.cause-card__goals -->
+                                </div>
                                 <div class="cause-card__bottom">
                                     <a href="{% url 'social_case_detail' case.id %}" class="thm-btn dynamic-radius">Donate
                                         Now</a>

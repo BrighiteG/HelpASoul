@@ -8,7 +8,8 @@
     <div class="cold-md6 offset-md-3">
         <form method="POST" enctype="multipart/form-data" class="become-volunteer__form form-one " >
             {% csrf_token %}
-            {{ form.as_p }}
+            {{form.as_p}}
+            {{ donation.as_p }}
             <button type="submit" class="btn btn-primary">Create Social Case</button>
         </form>
 
