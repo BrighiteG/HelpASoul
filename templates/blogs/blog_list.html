@@ -45,7 +45,7 @@
                         <div class="blog-card__inner">
                             <div class="blog-card__image">
                                 <img src="{% static 'images/blog/blog-1-1.jpg' %}" alt="">
-                                <div class="blog-card__date"> {{ blog.created_at }}</div><!-- /.blog-card__date -->
+                                <div class="blog-card__date"> {{ blog.created_at|date:"F d Y" }}</div><!-- /.blog-card__date -->
                             </div><!-- /.blog-card__image -->
                             <div class="blog-card__content">
                                 <div class="blog-card__meta">
@@ -53,6 +53,9 @@
                                     <a href={% url 'blog-detail-view' blog.id %}><i class="far fa-comments"></i> 2 Comments</a>
                                 </div><!-- /.blog-card__meta -->
                                 <h3><a href={% url 'blog-detail-view' blog.id %}> {{ blog.title }}</a></h3>
+                                {% for tag in blog.blog_tags.all %}
+                                    <p> {{ tag }}</p>
+                                {% endfor %}
                                 <p> {{ blog.description }}</p>
                                 <a href="{% url 'blog-detail-view' blog.id %}" class="blog-card__more"><i class="far fa-angle-right"></i>Read More</a>
                                 <!-- /.blog-card__more -->

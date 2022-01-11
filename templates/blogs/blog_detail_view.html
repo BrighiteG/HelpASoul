@@ -32,7 +32,7 @@
                     <div class="col-md-12 col-lg-8">
                         <div class="blog-card__image">
                             <img src="{{ blog.profile_image.url }}" alt="">
-                            <div class="blog-card__date"> {{ blog.created_at }} </div><!-- /.blog-card__date -->
+                            <div class="blog-card__date"> {{ blog.created_at|date:"F d Y" }} </div><!-- /.blog-card__date -->
                         </div><!-- /.blog-card__image -->
                         <div class="blog-card__meta d-flex justify-content-start mt-0 mb-0">
                             <a href="{% url 'blog-detail-view' blog.id %}"><i class="far fa-user-circle"></i> {{ blog.profile }} </a>
@@ -44,8 +44,8 @@
 
                         <div class="blog-details__meta">
                             <ul class="list-unstyled blog-details__category">
-                                {% for blog_tag in blog_list.blog_tags.all %}
-                                <li><span>Tags: {{ blog_tag }}</span></li>
+                                {% for blog_tag in blog.blog_tags.all %}
+                                <li><span> {{ blog_tag }}</span></li>
                                 {% endfor %}
 {#                                <li><a href="#">donations</a></li>#}
 {#                                <li><a href="#">savelives</a></li>#}
