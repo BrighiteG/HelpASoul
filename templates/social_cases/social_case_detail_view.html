@@ -44,7 +44,7 @@
                                             </div><!-- /.cause-card__progress -->
                                             <div class="cause-card__goals">
 
-                                                <p><strong>Raised: {{ socialcase.raised }} RON</strong></p>
+                                                <p><strong>Raised: {{ total_donations_case }} RON</strong></p>
 
                                                 <p><strong>Goal:</strong>{{ socialcase.target_donation }} RON</p>
 
@@ -71,7 +71,6 @@
                         <h3 class="blog-details__title">Comments</h3><!-- /.blog-details__title -->
                          {% for comment in comments %}
                         <div class="comment-one">
-
                             <div class="comment-one__single">
                                 <h3>{{comment.name}}</h3>
                                 <p class="comment-one__date">{{ comment.created}}</p>

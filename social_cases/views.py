@@ -35,17 +35,6 @@ def social_case_list_view(request):
     social_cases = SocialCase.objects.distinct().filter(Q(title__icontains=search_query) |
                                                         Q(description__icontains=search_query) |
                                                         Q(case_tags__in=tags))
-    qs = Tag.objects.all()
-    tag1 = request.GET.get('tag1')
-    tag2 = request.GET.get('tag2')
-    tag3 = request.GET.get('tag3')
-
-    if tag1:
-        qs = qs.filter(name__icontains=tag1)
-    if tag2:
-        qs = qs.filter(name__icontains=tag2)
-    if tag3:
-        qs = qs.filter(name__icontains=tag3)
 
     page = request.GET.get('page')
     results = 6
@@ -72,7 +61,6 @@ def social_case_list_view(request):
                'search_query': search_query,
                'paginator': paginator,
                'custom_range': custom_range,
-               'queryset': qs,
                # 'percent':percent
                # 'social_cases_with_donation': social_cases_with_donation,
                }
@@ -96,18 +84,27 @@ def social_case_detail(request, pk):
 
     social_case = SocialCase.objects.get(id=pk)
     comments = Review.objects.filter(social_case_id=pk)
+    comment_number = Review.comment_count
     form = ReviewForm()
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         comment = form.save(commit=False)
         comment.social_case = social_case
         comment.save()
+        return redirect('social_case_detail', pk=social_case.id)
 
-        return redirect('social_case_detail', pk=social_case.id, )
     total_sum = social_case.total_donations
     percent = social_case.percentage
-    context = {'socialcase': social_case, 'form': form, 'comments': comments, 'percent': percent, 'total_sum': total_sum}
+    # total_donations = social_case.total_donations_per_case
+    context = {'socialcase': social_case,
+               'form': form,
+               'comments': comments,
+               'percent': percent,
+               'total_sum': total_sum,
+               'comment_number': comment_number}
+               # 'total_donations_case': total_donations}
     return render(request, 'social_cases/social_case_detail_view.html', context)
+
 
 
 

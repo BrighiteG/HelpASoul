@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING
 from django.contrib.auth.models import User
 from django.db import models
-
+from django.db.models import Sum
 
 if TYPE_CHECKING:
     from events.models import Tag
@@ -27,4 +27,10 @@ class Review(models.Model):
     body = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.social_case.title
 
+    @property
+    def comment_count(self):
+        count = Review.objects.filter(pk=self.id).aggregate(Sum())
+        return count

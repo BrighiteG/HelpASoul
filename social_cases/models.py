@@ -27,10 +27,17 @@ class SocialCase(models.Model):
         count = SocialCase.objects.aggregate(Sum('raised'))
         return count['raised__sum']
 
+    # @property
+    # def total_donations_per_case(self):
+    #     raised = self.raised
+    #     count = SocialCase.objects.filter(pk=self.id).aggregate()
+    #     return count['raised__sum']
 
     @property
     def percentage(self):
         raised = self.raised
+        if raised is None:
+            raised = 0
         target_donation = self.target_donation
         percentage = (raised / target_donation) * 100
         return round(percentage)

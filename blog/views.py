@@ -31,9 +31,10 @@ def blog_list_view(request):
         search_query = request.GET.get('search_query')
     blog_tags = Tag.objects.filter(name__icontains=search_query)
     blog = Blog.objects.distinct().filter(Q(title__icontains=search_query) |
-                                          Q(description__icontains=search_query),
+                                          Q(description__icontains=search_query) |
                                           Q(blog_tags__in=blog_tags)
                                           )
+
     context = {'blog_list': blog, 'search_query': search_query}
     return render(request, 'blogs/blog_list.html', context)
 
@@ -48,7 +49,8 @@ def blog_detail_view(request, pk):
         comment.blog_comment = blog
         comment.save()
         return redirect('blog-detail-view', pk=blog.id)
-    context = {'blog': blog, 'form': form, 'comments': comments}
+    comment_number = Review.comment_count
+    context = {'blog': blog, 'form': form, 'comments': comments, 'comment_number': comment_number}
     return render(request, 'blogs/blog_detail_view.html', context)
 
 
