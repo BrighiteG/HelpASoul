@@ -86,27 +86,42 @@
                             </ul><!-- /.list-unstyled event-infos__list event-infos__list-has-icons -->
                         </div><!-- /.event-infos__single -->
                     </div><!-- /.col-md-12 col-lg-4 mb-30 -->
-                </div><!-- /.row -->
 
+                </div><!-- /.row -->
+                <h3 class="blog-details__title">2 comments</h3><!-- /.blog-details__title -->
+                            {% for comment in comments %}
+                            <div class="comment-one">
+                            <div class="comment-one__single">
+                                <img src="{% static 'images/blog/comment-1-1.jpg' %}" alt="">
+                                <h3> {{ comment.name }}</h3>
+                                <p class="comment-one__date"> {{ comment.created }}</p>
+                                <p>{{ comment.body }}</p>
+                                <a href="#" class="thm-btn dynamic-radius">Reply</a><!-- /.thm-btn dynamic-radius -->
+                            </div><!-- /.comment-one__single -->
+                            </div><!-- /.comment-one -->
+                            {% endfor %}
+
+                        <h3 class="blog-details__title">Leave a comment</h3><!-- /.blog-details__title -->
+                        <form action="{% url 'event-detail-view' event.id  %}" class="contact-page__form form-one mb-80" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {% for field in form %}
+                                    <div class="form-control">
+                                        {{ field }}
+                                    </div><!-- /.form-control -->
+                                {% endfor %}
+
+                                <div class="form-control form-control-full">
+                                    <button type="submit" class="thm-btn dynamic-radius">Submit Comment</button>
+                                    <!-- /.thm-btn dynamic-radius -->
+                                </div><!-- /.form-control -->
+                            </div><!-- /.form-group -->
+                        </form><!-- /.contact-page__form -->
+                        <div class="result"></div><!-- /.result -->
 
             </div>
                     <!-- /.search-popup__content -->
         </div>
              <!-- /.search-popup -->
-
-{#    <script src="assets/js/jquery-3.5.1.min.js"></script>#}
-{#    <script src="assets/js/bootstrap.bundle.min.js"></script>#}
-{#    <script src="assets/js/swiper.min.js"></script>#}
-{#    <script src="assets/js/jquery.ajaxchimp.min.js"></script>#}
-{#    <script src="assets/js/jquery.magnific-popup.min.js"></script>#}
-{#    <script src="assets/js/jquery.validate.min.js"></script>#}
-{#    <script src="assets/js/bootstrap-select.min.js"></script>#}
-{#    <script src="assets/js/wow.js"></script>#}
-{#    <script src="assets/js/odometer.min.js"></script>#}
-{#    <script src="assets/js/jquery.appear.min.js"></script>#}
-{#    <!-- template js -->#}
-{#    <script src="assets/js/theme.js"></script>#}
-
-
 
 {% endblock %}

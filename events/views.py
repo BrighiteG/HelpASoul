@@ -1,13 +1,15 @@
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, UpdateView, DeleteView, DetailView
+from django.views.generic import UpdateView, DeleteView
+
 
 from events.forms import EventForm
 from events.models import Event, Tag
 from django.views.generic import TemplateView
 
-from users.models import Profile
+from social_cases.forms import ReviewForm
+from users.models import Profile, Review
 
 
 class HomeTemplateView(TemplateView):
@@ -48,12 +50,21 @@ class EventUpdateView(UpdateView):
     form_class = EventForm
 
 
+def event_detail_view(request, pk):
+    event = Event.objects.get(id=pk)
+    comments = Review.objects.filter(event_comment=pk)
+    form = ReviewForm()
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        comment = form.save(commit=False)
+        comment.event_comment = event
+        comment.save()
+        return redirect('event-detail-view', pk=event.id)
+    context = {'event': event, 'form': form, 'comments': comments}
+    return render(request, 'events/event_detail_view.html', context)
+
+
 class EventDeleteView(DeleteView):
     template_name = 'events/event_delete.html'
     model = Event
     success_url = reverse_lazy('events-list')
-
-
-class EventDetailView(DetailView):
-    template_name = 'events/event_detail_view.html'
-    model = Event
