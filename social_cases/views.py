@@ -33,17 +33,14 @@ def social_case_list_view(request):
     social_cases = SocialCase.objects.distinct().filter(Q(title__icontains=search_query) |
                                                         Q(description__icontains=search_query) |
                                                         Q(case_tags__in=tags))
-    qs = Tag.objects.all()
-    tag1 = request.GET.get('tag1')
-    tag2 = request.GET.get('tag2')
-    tag3 = request.GET.get('tag3')
+    social_cases_with_percentages = []
+    for social_case in social_cases:
+        percent = social_case.percent_raised()
+        amount_raised = social_case.total_donations()
+        social_cases_with_percentages.append(
+            {'social_case': social_case, 'percent': percent, 'amount_raised': amount_raised})
 
-    if tag1:
-        qs = qs.filter(name__icontains=tag1)
-    if tag2:
-        qs = qs.filter(name__icontains=tag2)
-    if tag3:
-        qs = qs.filter(name__icontains=tag3)
+
 
     page = request.GET.get('page')
     results = 6
@@ -63,17 +60,17 @@ def social_case_list_view(request):
     if right_index > paginator.num_pages:
         right_index = paginator.num_pages + 1
 
-
     custom_range = range(left_index, right_index)
 
     context = {'social_cases_list': social_cases,
                'search_query': search_query,
                'paginator': paginator,
                'custom_range': custom_range,
-               'queryset': qs,
-               # 'percent':percent
+
+               'social_cases_with_percentages': social_cases_with_percentages
                # 'social_cases_with_donation': social_cases_with_donation,
                }
+
     return render(request, 'social_cases/social_cases_list.html', context)
 
 
@@ -91,7 +88,6 @@ class SocialCaseDeleteView(DeleteView):
 
 
 def social_case_detail(request, pk):
-
     social_case = SocialCase.objects.get(id=pk)
     comments = Review.objects.filter(social_case_id=pk)
     form = ReviewForm()
@@ -101,16 +97,9 @@ def social_case_detail(request, pk):
         comment.social_case = social_case
         comment.save()
 
-        return redirect('social_case_detail', pk=social_case.id, )
-    total_sum = social_case.total_donations
-    percent = social_case.percentage
-    context = {'socialcase': social_case, 'form': form, 'comments': comments, 'percent': percent, 'total_sum': total_sum}
+        return redirect('social_case_detail', pk=social_case.id)
+    percent = social_case.percent_raised()
+    amount_raised = social_case.total_donations()
+    context = {'socialcase': social_case, 'form': form, 'comments': comments, 'percent': percent,
+               'amount_raised': amount_raised}
     return render(request, 'social_cases/social_case_detail_view.html', context)
-
-
-
-
-
-
-
-

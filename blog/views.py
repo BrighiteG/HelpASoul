@@ -34,6 +34,7 @@ def blog_list_view(request):
                                           Q(description__icontains=search_query) |
                                           Q(blog_tags__in=blog_tags)
                                           )
+
     context = {'blog_list': blog, 'search_query': search_query}
     return render(request, 'blogs/blog_list.html', context)
 

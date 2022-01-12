@@ -44,13 +44,13 @@
                                             </div><!-- /.cause-card__progress -->
                                             <div class="cause-card__goals">
 
-                                                <p><strong>Raised: {{ socialcase.raised }} RON</strong></p>
+                                                <p><strong>Raised: {{ amount_raised }}  RON</strong></p>
 
                                                 <p><strong>Goal:</strong>{{ socialcase.target_donation }} RON</p>
 
                                             </div><!-- /.cause-card__goals -->
                                           <div  style="display:flex; flex-direction: row; ">
-                                              {% for tag in socialcase.case_tags.all  %}
+                                              {% for tag in case.social_case.case_tags.all  %}
                                                 <small>{{tag}}&nbsp;&nbsp;&nbsp;</small>
                                               {% endfor %}
                                             </div>
@@ -58,8 +58,8 @@
                                     </div><!-- /.cause-card__content -->
                                 </div><!-- /.cause-card__inner -->
                             </div><!-- /.cause-card -->
-                            <h3>{{ socialcase.title}}</h3>
-                                    <p>{{ socialcase.description }}</p>
+                            <h3>{{socialcase.title}}</h3>
+                            <p>{{socialcase.description }}</p>
                             <div class="cause-card__bottom">
                                 <a href="cause-details.html" class="thm-btn dynamic-radius">Donate Now</a>
                                 <!-- /.thm-btn dynamic-radius -->
