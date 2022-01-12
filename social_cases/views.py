@@ -26,10 +26,8 @@ def social_case_create(request):
 
 
 def social_case_list_view(request):
-
     search_query = ''
     if request.GET.get('search_query'):
-
         search_query = request.GET.get('search_query')
     tags = Tag.objects.filter(name__icontains=search_query)
     social_cases = SocialCase.objects.distinct().filter(Q(title__icontains=search_query) |
@@ -62,7 +60,6 @@ def social_case_list_view(request):
     if right_index > paginator.num_pages:
         right_index = paginator.num_pages + 1
 
-
     custom_range = range(left_index, right_index)
 
     context = {'social_cases_list': social_cases,
@@ -91,7 +88,6 @@ class SocialCaseDeleteView(DeleteView):
 
 
 def social_case_detail(request, pk):
-
     social_case = SocialCase.objects.get(id=pk)
     comments = Review.objects.filter(social_case_id=pk)
     form = ReviewForm()
@@ -107,11 +103,3 @@ def social_case_detail(request, pk):
     context = {'socialcase': social_case, 'form': form, 'comments': comments, 'percent': percent,
                'amount_raised': amount_raised}
     return render(request, 'social_cases/social_case_detail_view.html', context)
-
-
-
-
-
-
-
-

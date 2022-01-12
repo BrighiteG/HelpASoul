@@ -10,6 +10,7 @@ from django.views.generic import TemplateView
 
 from social_cases.forms import ReviewForm
 from users.models import Profile, Review
+from .utils import search_events
 
 
 class HomeTemplateView(TemplateView):
@@ -32,13 +33,8 @@ def event_create(request):
 
 
 def event_list_view(request):
-    search_query = ''
-    if request.GET.get('search_query'):
-        search_query = request.GET.get('search_query')
-    tags = Tag.objects.filter(name__icontains=search_query)
-    events = Event.objects.distinct().filter(Q(title__icontains=search_query) |
-                                             Q(description__icontains=search_query) |
-                                             Q(event_tags__in=tags))
+    events, search_query = search_events(request)
+
     context = {'events_list': events, 'search_query': search_query}
     return render(request, 'events/events_list.html', context)
 

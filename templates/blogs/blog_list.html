@@ -51,7 +51,7 @@
                                 <div class="blog-card__meta">
                                     <a href={% url 'blog-detail-view' blog.id %}><i class="far fa-user-circle"></i> {{ blog.profile}}</a>
 
-                                    <a href={% url 'blog-detail-view' blog.id %}><i class="far fa-comments"></i>{{ blog.body.count }}</a>
+                                    <a href={% url 'blog-detail-view' blog.id %}><i class="far fa-comments"></i>{{ blog.comments.count }}</a>
                                 </div><!-- /.blog-card__meta -->
                                 <h3><a href={% url 'blog-detail-view' blog.id %}> {{ blog.title }}</a></h3>
                                 {% for tag in blog.blog_tags.all %}

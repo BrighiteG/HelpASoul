@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models import Sum
+from django.db.models import Avg, Count, Sum
 
 from users.models import Profile, Review
 

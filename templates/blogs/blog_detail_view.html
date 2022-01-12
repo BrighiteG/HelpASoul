@@ -62,13 +62,14 @@
                             <a href="#">Fundraising for Early Childhood Rise</a>
                         </div><!-- /.blog-navigations -->
 
+
                         <h3 class="blog-details__title">{{ comment_number }} comments</h3><!-- /.blog-details__title -->
                             {% for comment in comments %}
                             <div class="comment-one">
                             <div class="comment-one__single">
                                 <img src="{% static 'images/blog/comment-1-1.jpg' %}" alt="">
                                 <h3> {{ comment.name }}</h3>
-                                <p class="comment-one__date"> {{ comment.created }}</p>
+                                <p class="comment-one__date">{{ comment.created }}</p>
                                 <p>{{ comment.body }}</p>
                                 <a href="#" class="thm-btn dynamic-radius">Reply</a><!-- /.thm-btn dynamic-radius -->
                             </div><!-- /.comment-one__single -->
