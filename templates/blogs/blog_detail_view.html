@@ -36,7 +36,7 @@
                         </div><!-- /.blog-card__image -->
                         <div class="blog-card__meta d-flex justify-content-start mt-0 mb-0">
                             <a href="{% url 'blog-detail-view' blog.id %}"><i class="far fa-user-circle"></i> {{ blog.profile }} </a>
-                            <a href="{% url 'blog-detail-view' blog.id %}"><i class="far fa-comments"></i> 2 Comments</a>
+                            <a href="{% url 'blog-detail-view' blog.id %}"><i class="far fa-comments"></i>{{ comments.count }} Comments</a>
                         </div><!-- /.blog-card__meta -->
                         <h3> {{ blog.title }}</h3>
                         <p> {{ blog.description }}</p>
@@ -62,13 +62,13 @@
                             <a href="#">Fundraising for Early Childhood Rise</a>
                         </div><!-- /.blog-navigations -->
 
-                        <h3 class="blog-details__title">2 comments</h3><!-- /.blog-details__title -->
+                        <h3 class="blog-details__title">{{ comments.count }} comments</h3><!-- /.blog-details__title -->
                             {% for comment in comments %}
                             <div class="comment-one">
                             <div class="comment-one__single">
                                 <img src="{% static 'images/blog/comment-1-1.jpg' %}" alt="">
                                 <h3> {{ comment.name }}</h3>
-                                <p class="comment-one__date"> {{ comment.created }}</p>
+                                <p class="comment-one__date">{{ comment.created }}</p>
                                 <p>{{ comment.body }}</p>
                                 <a href="#" class="thm-btn dynamic-radius">Reply</a><!-- /.thm-btn dynamic-radius -->
                             </div><!-- /.comment-one__single -->

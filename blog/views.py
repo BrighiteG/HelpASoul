@@ -31,7 +31,7 @@ def blog_list_view(request):
         search_query = request.GET.get('search_query')
     blog_tags = Tag.objects.filter(name__icontains=search_query)
     blog = Blog.objects.distinct().filter(Q(title__icontains=search_query) |
-                                          Q(description__icontains=search_query),
+                                          Q(description__icontains=search_query) |
                                           Q(blog_tags__in=blog_tags)
                                           )
     context = {'blog_list': blog, 'search_query': search_query}

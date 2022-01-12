@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 class SocialCase(models.Model):
     title = models.CharField(max_length=200)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    organizer = models.TextField(max_length=200, null=True, blank=False)
+    # organizer = models.TextField(max_length=200, null=True, blank=False)
     description = models.TextField(null=True, blank=False)
     created = models.DateTimeField(auto_now_add=True)
     profile_image = models.ImageField(upload_to='static/images/', default='static/images/Aesthetic-Desktop-Wallpaper.jpg')
@@ -31,6 +31,8 @@ class SocialCase(models.Model):
     @property
     def percentage(self):
         raised = self.raised
+        if raised is None:
+            raised = 0
         target_donation = self.target_donation
         percentage = (raised / target_donation) * 100
         return round(percentage)

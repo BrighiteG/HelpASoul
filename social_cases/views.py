@@ -26,10 +26,8 @@ def social_case_create(request):
 
 
 def social_case_list_view(request):
-
     search_query = ''
     if request.GET.get('search_query'):
-
         search_query = request.GET.get('search_query')
     tags = Tag.objects.filter(name__icontains=search_query)
     social_cases = SocialCase.objects.distinct().filter(Q(title__icontains=search_query) |
