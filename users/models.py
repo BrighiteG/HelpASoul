@@ -15,16 +15,15 @@ class Profile(models.Model):
     is_volunteer = models.BooleanField(default=False)
     profile_tags = models.ManyToManyField('events.Tag')
 
+
     def __str__(self):
         return f"{self.user.first_name}, {self.user.last_name}"
 
 
 class Review(models.Model):
     social_case = models.ForeignKey('social_cases.SocialCase', on_delete=models.CASCADE, null=True, blank=True)
-    blog_comment = models.ForeignKey('blog.Blog', on_delete=models.CASCADE, null=True, blank=True)
+    blog_comment = models.ForeignKey('blog.Blog', related_name='body', on_delete=models.CASCADE, null=True, blank=True)
     event_comment = models.ForeignKey('events.Event', on_delete=models.CASCADE, null=True, blank=True)
     name = models.TextField(max_length=100, null=True)
     body = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
-
-
