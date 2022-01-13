@@ -44,14 +44,15 @@ def social_case_list_view(request):
 
     page = request.GET.get('page')
     results = 3
-    paginator = Paginator(social_cases, results)
+    paginator = Paginator(social_cases_with_percentages, results)
+
     try:
-        social_cases = paginator.page(page)
+        social_cases_with_percentages = paginator.page(page)
     except PageNotAnInteger:
         page = 1
     except EmptyPage:
         page = paginator.num_pages
-        social_cases = paginator.page(page)
+        social_cases_with_percentages = paginator.page(page)
 
     left_index = (int(page) - 4)
     if left_index < 1:
@@ -62,11 +63,10 @@ def social_case_list_view(request):
 
     custom_range = range(left_index, right_index)
 
-    context = {'social_cases_list': social_cases,
+    context = {
                'search_query': search_query,
                'paginator': paginator,
                'custom_range': custom_range,
-
                'social_cases_with_percentages': social_cases_with_percentages
                # 'social_cases_with_donation': social_cases_with_donation,
                }

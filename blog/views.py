@@ -49,6 +49,7 @@ def blog_detail_view(request, pk):
         comment.blog_comment = blog
         comment.save()
         return redirect('blog-detail-view', pk=blog.id)
+
     context = {'blog': blog, 'form': form, 'comments': comments}
     return render(request, 'blogs/blog_detail_view.html', context)
 

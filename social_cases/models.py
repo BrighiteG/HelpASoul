@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models import Sum
+from django.db.models import Avg, Count, Sum
 
 from users.models import Profile, Review
 
@@ -20,7 +20,7 @@ class SocialCase(models.Model):
                                       default='static/images/Aesthetic-Desktop-Wallpaper.jpg')
     case_tags = models.ManyToManyField('events.Tag')
     target_donation = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
-    raised = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+
 
 
     def percent_raised(self):
