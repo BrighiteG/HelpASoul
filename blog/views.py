@@ -49,8 +49,8 @@ def blog_detail_view(request, pk):
         comment.blog_comment = blog
         comment.save()
         return redirect('blog-detail-view', pk=blog.id)
-    comment_number = Review.comment_count
-    context = {'blog': blog, 'form': form, 'comments': comments, 'comment_number': comment_number}
+
+    context = {'blog': blog, 'form': form, 'comments': comments}
     return render(request, 'blogs/blog_detail_view.html', context)
 
 
