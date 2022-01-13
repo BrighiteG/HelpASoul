@@ -43,7 +43,7 @@ def social_case_list_view(request):
 
 
     page = request.GET.get('page')
-    results = 6
+    results = 3
     paginator = Paginator(social_cases, results)
     try:
         social_cases = paginator.page(page)
