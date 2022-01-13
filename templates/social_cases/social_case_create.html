@@ -9,7 +9,6 @@
         <form method="POST" enctype="multipart/form-data" class="become-volunteer__form form-one " >
             {% csrf_token %}
             {{form.as_p}}
-            {{ donation.as_p }}
             <button type="submit" class="btn btn-primary">Create Social Case</button>
         </form>
 

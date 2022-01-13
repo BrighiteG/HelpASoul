@@ -19,6 +19,8 @@ def social_case_create(request):
             social_case = form.save(commit=False)
             social_case.profile = profile
             social_case.save()
+            form.save_m2m()
+
 
             return redirect('social-cases')
     context = {'form': form}
@@ -64,6 +66,7 @@ def social_case_list_view(request):
     custom_range = range(left_index, right_index)
 
     context = {
+                'socialcase': social_cases,
                'search_query': search_query,
                'paginator': paginator,
                'custom_range': custom_range,

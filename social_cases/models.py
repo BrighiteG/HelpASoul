@@ -16,8 +16,7 @@ class SocialCase(models.Model):
     organizer = models.TextField(max_length=200, null=True, blank=False)
     description = models.TextField(null=True, blank=False)
     created = models.DateTimeField(auto_now_add=True)
-    profile_image = models.ImageField(upload_to='static/images/',
-                                      default='static/images/Aesthetic-Desktop-Wallpaper.jpg')
+    profile_image = models.ImageField(upload_to='static/images/', default='static/images/Aesthetic-Desktop-Wallpaper.jpg')
     case_tags = models.ManyToManyField('events.Tag')
     target_donation = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
 

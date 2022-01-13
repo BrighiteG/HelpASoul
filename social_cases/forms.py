@@ -9,11 +9,12 @@ from users.models import Review
 class SocialCaseForm(forms.ModelForm):
     class Meta:
         model = SocialCase
-        fields = ['title', 'description', 'case_tags', 'profile_image', 'target_donation']
+        fields = ['title', 'description', 'organizer', 'case_tags', 'profile_image', 'target_donation']
         widgets = {
-            'title': TextInput(attrs={'placeholder': 'Adauga titlul cazului social' }),
+            'title': TextInput(attrs={'placeholder': 'Adauga titlul cazului social'}),
             'description': Textarea(attrs={'placeholder': 'Adauga descrierea cazului social'}),
-            'case_tags': CheckboxSelectMultiple(attrs={'class': 'input', }),
+            'organizer': TextInput(attrs={'placeholder': 'Adauga numele organizatiei'}),
+            'case_tags': CheckboxSelectMultiple(attrs={'class': 'input'}),
             'profile_image': FileInput(attrs={'placeholder': 'Adaugati o poza cazului social'}),
             'target_donation': NumberInput()
         }
@@ -35,4 +36,3 @@ class ReviewForm(forms.ModelForm):
 #         widgets = {
 #             'target_donation': NumberInput()
 #         }
-

@@ -22,7 +22,6 @@ class Profile(models.Model):
 
 class Review(models.Model):
     social_case = models.ForeignKey('social_cases.SocialCase', on_delete=models.CASCADE, null=True, blank=True)
-    # blog_comment = models.ForeignKey('blog.Blog', related_name='body', on_delete=models.CASCADE, null=True, blank=True)
     blog_comment = models.ForeignKey('blog.Blog', related_name='comments', on_delete=models.CASCADE, null=True, blank=True)
     event_comment = models.ForeignKey('events.Event', on_delete=models.CASCADE, null=True, blank=True)
     name = models.TextField(max_length=100, null=True)
