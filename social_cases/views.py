@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, UpdateView, CreateView, DeleteView, DetailView
+from django.views.generic import UpdateView, DeleteView
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from events.models import Tag
 from social_cases.forms import SocialCaseForm, ReviewForm
@@ -20,8 +20,6 @@ def social_case_create(request):
             social_case.profile = profile
             social_case.save()
             form.save_m2m()
-
-
             return redirect('social-cases')
     context = {'form': form}
     return render(request, 'social_cases/social_case_create.html', context)
@@ -42,8 +40,6 @@ def social_case_list_view(request):
         social_cases_with_percentages.append(
             {'social_case': social_case, 'percent': percent, 'amount_raised': amount_raised})
 
-
-
     page = request.GET.get('page')
     results = 3
     paginator = Paginator(social_cases_with_percentages, results)
@@ -52,6 +48,7 @@ def social_case_list_view(request):
         social_cases_with_percentages = paginator.page(page)
     except PageNotAnInteger:
         page = 1
+        # social_cases_with_percentages = paginator.page(page)
     except EmptyPage:
         page = paginator.num_pages
         social_cases_with_percentages = paginator.page(page)
@@ -67,10 +64,10 @@ def social_case_list_view(request):
 
     context = {
                 'socialcase': social_cases,
-               'search_query': search_query,
-               'paginator': paginator,
-               'custom_range': custom_range,
-               'social_cases_with_percentages': social_cases_with_percentages
+                'search_query': search_query,
+                'paginator': paginator,
+                'custom_range': custom_range,
+                'social_cases_with_percentages': social_cases_with_percentages
                # 'social_cases_with_donation': social_cases_with_donation,
                }
 

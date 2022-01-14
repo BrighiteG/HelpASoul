@@ -20,6 +20,7 @@ def blog_create(request):
             blog = form.save(commit=False)
             blog.profile = profile
             blog.save()
+            form.save_m2m()
             return redirect('blog-list')
     context = {'blog_form': form}
     return render(request, 'blogs/blog_create.html', context)
