@@ -5,8 +5,8 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 def paginate_events(request, events, results):
+
     page = request.GET.get('page')
-    results = 2
     paginator = Paginator(events, results)
 
     try:

@@ -85,28 +85,30 @@
 
         </div>
 
-        {% if events_list.has_other_pages %}
-        <div class="pagination">
-            <ul class="list-unstyled post-pagination d-flex justify-content-center align-items-center">
-                {% if events_list.has_previous %}
-                    <li><a href="?page={{ events_list.previous_page_number }}" class="btn" style="color: #1d2124">&#10094;&#10094; Prev</a></li>
-                {% endif %}
-
-                {% for page in custom_range %}
-                    {% if page == events_list.number %}
-                        <li><a href="?page={{ page }}" class="btn btn-dark">{{ page }}</a></li>
-                    {% else %}
-                        <li><a href="?page={{ page }}" class="btn">{{ page }}</a></li>
-                    {% endif %}
-                {% endfor %}
-
-                {% if events_list.has_next %}
-                    <li><a href="?page={{ events_list.next_page_number }}" class="btn" style="color: #fcad30">&#10095;&#10095; Next</a></li>
-                {% endif %}
-            </ul>
-
-        </div>
-        {% endif %}
+    {% include 'pagination.html' with queryset=events_list custom_range=custom_range %}
+{#this include replaced this code#}
+{#        {% if events_list.has_other_pages %}#}
+{#        <div class="pagination">#}
+{#            <ul class="list-unstyled post-pagination d-flex justify-content-center align-items-center">#}
+{#                {% if events_list.has_previous %}#}
+{#                    <li><a href="?page={{ events_list.previous_page_number }}" class="btn" style="color: #1d2124">&#10094;&#10094; Prev</a></li>#}
+{#                {% endif %}#}
+{##}
+{#                {% for page in custom_range %}#}
+{#                    {% if page == events_list.number %}#}
+{#                        <li><a href="?page={{ page }}" class="btn btn-dark">{{ page }}</a></li>#}
+{#                    {% else %}#}
+{#                        <li><a href="?page={{ page }}" class="btn">{{ page }}</a></li>#}
+{#                    {% endif %}#}
+{#                {% endfor %}#}
+{##}
+{#                {% if events_list.has_next %}#}
+{#                    <li><a href="?page={{ events_list.next_page_number }}" class="btn" style="color: #fcad30">&#10095;&#10095; Next</a></li>#}
+{#                {% endif %}#}
+{#            </ul>#}
+{##}
+{#        </div>#}
+{#        {% endif %}#}
 
     </section>
 
