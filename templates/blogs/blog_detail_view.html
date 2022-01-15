@@ -36,16 +36,18 @@
                         </div><!-- /.blog-card__image -->
                         <div class="blog-card__meta d-flex justify-content-start mt-0 mb-0">
                             <a href="{% url 'blog-detail-view' blog.id %}"><i class="far fa-user-circle"></i> {{ blog.profile }} </a>
-                            <a href="{% url 'blog-detail-view' blog.id %}"><i class="far fa-comments"></i> 2 Comments</a>
+                            <a href="{% url 'blog-detail-view' blog.id %}"><i class="far fa-comments"></i> {{ comments.count }}</a>
                         </div><!-- /.blog-card__meta -->
                         <h3> {{ blog.title }}</h3>
                         <p> {{ blog.description }}</p>
                         <p> NOT NECESSARY THIS MANY CHARACTERS </p>
 
                         <div class="blog-details__meta">
+
                             <ul class="list-unstyled blog-details__category">
+                            <li><span>Tags: </span></li>
                                 {% for blog_tag in blog.blog_tags.all %}
-                                <li><span> {{ blog_tag }}</span></li>
+                                <span> {{ blog_tag }}.</span>
                                 {% endfor %}
 {#                                <li><a href="#">donations</a></li>#}
 {#                                <li><a href="#">savelives</a></li>#}

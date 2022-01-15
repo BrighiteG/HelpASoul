@@ -23,7 +23,7 @@
         <!-- /.page-header__bg -->
 
         <div class="container">
-            <h2>Events Page</h2>
+            <h2>Upcoming Events</h2>
             <ul class="thm-breadcrumb list-unstyled dynamic-radius">
                 <li><a href="{% url 'home_page' %}">Home</a></li>
                 <li>-</li>
@@ -54,7 +54,7 @@
                         <div class="event-card-image">
                             <div class="event-card-image-inner">
                                 <img src="{{ event.profile_image.url }}" alt="picture" width="auto" height="150px" style="object-fit: cover">
-                                <span> {{ event.start_date }}</span>
+                                <span> {{ event.start_date|date:"d F Y" }}</span>
                             </div><!-- /.event-card-image-inner -->
                         </div><!-- /.event-card-image -->
                         <div class="event-card-content">
@@ -62,16 +62,19 @@
                             <ul class="event-card-list">
                                 <li>
                                     <i class="azino-icon-clock"></i>
-                                    <strong>Start date: </strong>{{ event.start_date }}<br>
-                                    <strong>End date: </strong>{{ event.end_date }}
+                                    <strong>Start date: </strong>{{ event.start_date|date:"d F Y" }}<br>
+                                    <strong>End date: </strong>{{ event.end_date|date:"d F Y" }}
                                 </li>
 
                                 <li>
                                     <i class="azino-icon-pin1"></i>
-                                    <strong>Location:</strong>{{ event.description|slice:'20'}}<br>
+                                    <strong>Location: </strong>{{ event.location }}<br>
+                                    <strong>Short Description: </strong>{{ event.description|slice:'20'}}<br>
+                                    <strong>Tags: </strong>
                                     {% for tag in event.event_tags.all %}
-                                        <span>{{ tag }}</span>
-                                    {% endfor %}
+                                        <span>{{ tag }}.</span>
+                                    {% endfor %}<br>
+                                     <strong>Organisation: </strong>{{ event.organisation }}<br>
                                 </li>
                             </ul><!-- /.event-card-list -->
 

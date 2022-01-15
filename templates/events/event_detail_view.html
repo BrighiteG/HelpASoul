@@ -15,7 +15,7 @@
             <div class="page-header__bg" style="background-image: url({% static 'images/backgrounds/page-header-1-1.jpg' %});"></div>
             <!-- /.page-header__bg -->
             <div class="container">
-                <h2>Events Details</h2>
+                <h2>Detalii eveniment</h2>
                 <ul class="thm-breadcrumb list-unstyled dynamic-radius">
                     <li><a href="{% url 'homepage' %}">Home</a></li>
                     <li>-</li>
@@ -29,8 +29,12 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-6">
                         <h3> {{ event.title }}</h3>
-                        <p>{{ event.description }}</p>
-                        <p> Organizator: {{ event.organizer }}</p>
+                        <p> Organizator: {{ event.organisation }}</p>
+                        <p> Despre eveniment: <br>{{ event.description }}</p>
+                        {% for tag in event.event_tags.all %}
+                        <p> Cuvinte cheie: {{ tag }}</p>
+                        {% endfor %}
+
                     </div><!-- /.col-md-12 -->
                     <div class="col-md-12 col-lg-6">
                         <img src="{{ event.profile_image.url }}" alt="image" width="512px" height="571x">
@@ -44,12 +48,13 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-4 mb-30">
                         <div class="event-infos__single background-secondary">
-                            <h3>Venue</h3>
-                            <p>Neque porro quisquam est, qui dolorem ipsum quiaolor sit amet adipisci veli sed quiae.</p>
+                            <h3> {{ event.title }}</h3>
+{#                            <p>Neque porro quisquam est, qui dolorem ipsum quiaolor sit amet adipisci veli sed quiae.</p>#}
                             <ul class="list-unstyled event-infos__list">
-                                <li> Start date: {{ event.start_date }}</li>
-                                <li> End Date: {{ event.end_date }} </li>
-                                <li>New York</li>
+                                <li> {{ event.location }}</li>
+                                <li> Start acțiune: {{ event.start_date|date:"d F Y" }}</li>
+                                <li> Final acțiune: {{ event.end_date|date:"d F Y" }} </li>
+                                <li> Coordonate GPS: {{ event.gps_coordinates_long }}, {{ event.gps_coordinates_lat }}</li>
                             </ul><!-- /.list-unstyled event-infos__list -->
                             <div class="event-infos__social">
                                 <a href="#"><i class="fab fa-twitter"></i></a>
@@ -68,7 +73,7 @@
 
                     <div class="col-md-12 col-lg-4 mb-30">
                         <div class="event-infos__single background-special">
-                            <h3>Organizer</h3>
+                            <h3> {{ event.organisation }}</h3>
                             <p>Neque porro quisquam est, qui dolorem ipsum quiaolor sit amet adipisci veli sed quiae.</p>
                             <ul class="list-unstyled event-infos__list event-infos__list-has-icons">
                                 <li>
@@ -88,7 +93,7 @@
                     </div><!-- /.col-md-12 col-lg-4 mb-30 -->
 
                 </div><!-- /.row -->
-                <h3 class="blog-details__title">2 comments</h3><!-- /.blog-details__title -->
+                <h3 class="blog-details__title">{{ comments.count }} Comments</h3><!-- /.blog-details__title -->
                             {% for comment in comments %}
                             <div class="comment-one">
                             <div class="comment-one__single">
