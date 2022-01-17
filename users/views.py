@@ -68,6 +68,5 @@ def contact_us(request):
     return render(request, 'users/contact_us.html')
 
 
-def contact_us_success(request):
-    return render(request, 'users/contact_us_success.html')
+
 

@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
-from django.views.generic import UpdateView, DeleteView
 
+from django.urls import reverse_lazy, reverse
+from django.views.generic import UpdateView, DeleteView
 from events.models import Tag
 from social_cases.forms import SocialCaseForm, ReviewForm
 from social_cases.models import SocialCase
 from django.db.models import Q
 from users.models import Profile, Review
 from .utils import paginate_social_cases
+import stripe
+
+stripe.api_key = "sk_test_51KGj3IDpxOYBflJAPVnLOtHUE51D1ih5BfY9Y5kKibHwSezBfH9NYA0Kr3fEt5KheJWj9w5ezLDtDmVCMkFMe2Pa00gRjrxwOt"
 
 
 def social_case_create(request):
@@ -83,3 +86,21 @@ def social_case_detail(request, pk):
     context = {'socialcase': social_case, 'form': form, 'comments': comments, 'percent': percent,
                'amount_raised': amount_raised}
     return render(request, 'social_cases/social_case_detail_view.html', context)
+
+
+def stripe_form(request):
+
+    return render(request, 'stripe/stripe_donation_form.html')
+
+
+def charge(request):
+    amount = 5
+    if request.method == 'POST':
+        print('Data:', request.POST)
+
+    return redirect(reverse('succes', args=[amount]))
+
+
+def stripe_payment_success(request, args):
+    amount = args
+    return render(request, 'stripe/stripe_success.html', {'amount': amount})
