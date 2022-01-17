@@ -11,61 +11,65 @@
                 </div><!-- /.logo-box -->
                 <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
             </div><!-- /.container -->
-        </div><!-- /.stricky-header -->
-        <section class="page-header" style="align-content: center">
-            <div class="page-header__bg"
-                 style="background-image: url({% static 'images/backgrounds/happy_children.jpg' %});"></div>
-            <!-- /.page-header__bg -->
-            <div class="container">
-                <h2>Blog Page</h2>
-                <ul class="thm-breadcrumb list-unstyled dynamic-radius">
-                    <li><a href="{% url 'homepage' %}">Home</a></li>
-                    <li>-</li>
-                    <li><span>Blog</span></li>
-                </ul><!-- /.thm-breadcrumb list-unstyled -->
-            </div><!-- /.container -->
+     </div><!-- /.stricky-header -->
+
+    <section class="page-header" style="align-content: center">
+        <div class="page-header__bg"
+             style="background-image: url({% static 'images/backgrounds/happy_children.jpg' %});"></div>
+        <!-- /.page-header__bg -->
+        <div class="container">
+            <h2>Blog Page</h2>
+            <ul class="thm-breadcrumb list-unstyled dynamic-radius">
+                <li><a href="{% url 'homepage' %}">Home</a></li>
+                <li>-</li>
+                <li><span>Blog</span></li>
+            </ul><!-- /.thm-breadcrumb list-unstyled -->
+        </div><!-- /.container -->
 
 
-            <div class="page-header center" style="background-color: transparent;">
-                <div class="footer-widget__newsletter center" style="width: 500px;">
-                    <form action="{% url 'blog-list' %}" method="get" >
-                        <label for="formInputsearch" class="sr-only">Search</label>
-                        <input id='formInputsearch' type="text" value="{{ search_query }}" name="search_query"
-                               placeholder="Search" style="border-radius: 40px; text-align: left;">
-                    </form>
-                </div>
+        <div class="page-header center" style="background-color: transparent;">
+            <div class="footer-widget__newsletter center" style="width: 500px;">
+                <form action="{% url 'blog-list' %}" method="get" >
+                    <label for="formInputsearch" class="sr-only">Search</label>
+                    <input id='formInputsearch' type="text" value="{{ search_query }}" name="search_query"
+                           placeholder="Search" style="border-radius: 40px; text-align: left;">
+                </form>
             </div>
-            </section><!-- /.page-header -->
+        </div>
+    </section><!-- /.page-header -->
 
     <section class="news-page pb-120 pt-120">
-            <div class="container">
-                <div class="news-3-col">
-                    {% for blog in blog_list %}
-                    <div class="blog-card">
-                        <div class="blog-card__inner">
-                            <div class="blog-card__image">
-                                <img src="{{ blog.profile_image.url }} " alt="" width="auto" height="250px" style="object-fit: cover">
-                                <div class="blog-card__date"> {{ blog.created_at|date:"F d Y" }}</div><!-- /.blog-card__date -->
-                            </div><!-- /.blog-card__image -->
-                            <div class="blog-card__content">
-                                <div class="blog-card__meta">
-                                    <a href={% url 'blog-detail-view' blog.id %}><i class="far fa-user-circle"></i> {{ blog.profile}}</a>
+        <div class="container">
+            <div class="news-3-col">
+                {% for blog in blog_list %}
+                <div class="blog-card">
+                    <div class="blog-card__inner">
+                        <div class="blog-card__image">
+                            <img src="{{ blog.profile_image.url }}" alt="" width="auto" height="250px" style="object-fit: cover">
+                            <div class="blog-card__date"> {{ blog.created_at|date:"d F Y" }}</div><!-- /.blog-card__date -->
+                        </div><!-- /.blog-card__image -->
+                        <div class="blog-card__content">
+                            <div class="blog-card__meta">
+                                <a href={% url 'blog-detail-view' blog.id %}><i class="far fa-user-circle"></i> {{ blog.profile}}</a>
 
-                                    <a href={% url 'blog-detail-view' blog.id %}><i class="far fa-comments"></i>{{ blog.comments.count }}</a>
-                                </div><!-- /.blog-card__meta -->
-                                <h3><a href={% url 'blog-detail-view' blog.id %}> {{ blog.title }}</a></h3>
-                                {% for tag in blog.blog_tags.all %}
-                                    <p> {{ tag }}</p>
-                                {% endfor %}
-                                <p> {{ blog.description }}</p>
-                                <a href="{% url 'blog-detail-view' blog.id %}" class="blog-card__more"><i class="far fa-angle-right"></i>Read More</a>
-                                <!-- /.blog-card__more -->
-                            </div><!-- /.blog-card__content -->
-                        </div><!-- /.blog-card__inner -->
-                    </div><!-- /.blog-card -->
-                    {% endfor %}
-                </div>
+                                <a href={% url 'blog-detail-view' blog.id %}><i class="far fa-comments"></i>{{ blog.comments.count }}</a>
+                            </div><!-- /.blog-card__meta -->
+                            <h3><a href={% url 'blog-detail-view' blog.id %}> {{ blog.title }}</a></h3>
+                            {% for tag in blog.blog_tags.all %}
+                                <p> {{ tag }}</p>
+                            {% endfor %}
+                            <p> {{ blog.description }}</p>
+                            <a href="{% url 'blog-detail-view' blog.id %}" class="blog-card__more"><i class="far fa-angle-right"></i>Read More</a>
+                            <!-- /.blog-card__more -->
+                        </div><!-- /.blog-card__content -->
+                    </div><!-- /.blog-card__inner -->
+                </div><!-- /.blog-card -->
+                {% endfor %}
             </div>
+        </div>
+
+    {% include 'pagination.html' with queryset=blog_list custom_range=custom_range %}
+
     </section>
 
 {% endblock %}

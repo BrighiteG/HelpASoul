@@ -1,4 +1,3 @@
-from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, DeleteView
@@ -10,7 +9,7 @@ from django.views.generic import TemplateView
 
 from social_cases.forms import ReviewForm
 from users.models import Profile, Review
-from .utils import search_events
+from .utils import search_events, paginate_events
 
 
 class HomeTemplateView(TemplateView):
@@ -27,6 +26,7 @@ def event_create(request):
             event = form.save(commit=False)
             event.profile = profile
             event.save()
+            form.save_m2m()
             return redirect('events-list')
     context = {'form': form}
     return render(request, 'events/event_create.html', context)
@@ -34,9 +34,12 @@ def event_create(request):
 
 def event_list_view(request):
     events, search_query = search_events(request)
+    custom_range, events = paginate_events(request, events, 2)
 
-    context = {'events_list': events, 'search_query': search_query}
+
+    context = {'events_list': events, 'search_query': search_query, 'custom_range': custom_range}
     return render(request, 'events/events_list.html', context)
+
 
 
 class EventUpdateView(UpdateView):

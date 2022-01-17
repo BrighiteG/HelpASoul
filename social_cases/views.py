@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
+
 from django.urls import reverse_lazy, reverse
 from django.views.generic import UpdateView, DeleteView
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from events.models import Tag
 from social_cases.forms import SocialCaseForm, ReviewForm
 from social_cases.models import SocialCase
 from django.db.models import Q
 from users.models import Profile, Review
-from django.http import JsonResponse
+from .utils import paginate_social_cases
 import stripe
 
 stripe.api_key = "sk_test_51KGj3IDpxOYBflJAPVnLOtHUE51D1ih5BfY9Y5kKibHwSezBfH9NYA0Kr3fEt5KheJWj9w5ezLDtDmVCMkFMe2Pa00gRjrxwOt"
@@ -24,7 +24,6 @@ def social_case_create(request):
             social_case.profile = profile
             social_case.save()
             form.save_m2m()
-
             return redirect('social-cases')
     context = {'form': form}
     return render(request, 'social_cases/social_case_create.html', context)
@@ -45,35 +44,15 @@ def social_case_list_view(request):
         social_cases_with_percentages.append(
             {'social_case': social_case, 'percent': percent, 'amount_raised': amount_raised})
 
-    page = request.GET.get('page')
-    results = 3
-    paginator = Paginator(social_cases_with_percentages, results)
-
-    try:
-        social_cases_with_percentages = paginator.page(page)
-    except PageNotAnInteger:
-        page = 1
-    except EmptyPage:
-        page = paginator.num_pages
-        social_cases_with_percentages = paginator.page(page)
-
-    left_index = (int(page) - 4)
-    if left_index < 1:
-        left_index = 1
-    right_index = (int(page) + 5)
-    if right_index > paginator.num_pages:
-        right_index = paginator.num_pages + 1
-
-    custom_range = range(left_index, right_index)
+    custom_range, social_cases_with_percentages = paginate_social_cases(request, social_cases_with_percentages, 3)
 
     context = {
-        'socialcase': social_cases,
-        'search_query': search_query,
-        'paginator': paginator,
-        'custom_range': custom_range,
-        'social_cases_with_percentages': social_cases_with_percentages
-        # 'social_cases_with_donation': social_cases_with_donation,
-    }
+                'socialcase': social_cases,
+                'search_query': search_query,
+                'custom_range': custom_range,
+                'social_cases_with_percentages': social_cases_with_percentages
+               # 'social_cases_with_donation': social_cases_with_donation,
+               }
 
     return render(request, 'social_cases/social_cases_list.html', context)
 

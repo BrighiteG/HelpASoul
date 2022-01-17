@@ -8,6 +8,7 @@ from blog.models import Blog
 from events.models import Tag
 from social_cases.forms import ReviewForm
 from users.models import Profile, Review
+from .utils import paginate_blogs
 
 
 def blog_create(request):
@@ -20,6 +21,7 @@ def blog_create(request):
             blog = form.save(commit=False)
             blog.profile = profile
             blog.save()
+            form.save_m2m()
             return redirect('blog-list')
     context = {'blog_form': form}
     return render(request, 'blogs/blog_create.html', context)
@@ -35,7 +37,9 @@ def blog_list_view(request):
                                           Q(blog_tags__in=blog_tags)
                                           )
 
-    context = {'blog_list': blog, 'search_query': search_query}
+    custom_range, blog = paginate_blogs(request, blog, 6)
+
+    context = {'blog_list': blog, 'search_query': search_query, 'custom_range': custom_range}
     return render(request, 'blogs/blog_list.html', context)
 
 
