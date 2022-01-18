@@ -710,7 +710,7 @@
                 <div class="row align-items-start align-items-md-center flex-column flex-md-row mb-60">
                     <div class="col-lg-7">
                         <div class="block-title">
-                            <p><img src="{% static 'images/shapes/heart-2-1.png' %}" width="15" alt="">Blog Posts</p>
+                            <p><img src="{{ blog.profile_image }}" width="15" alt="">Blog Posts</p>
                             <h3>Latest news & articles <br> directly from the blog.</h3>
                         </div><!-- /.block-title -->
                     </div><!-- /.col-lg-7 -->
@@ -763,7 +763,7 @@
                                 <div class="blog-card">
                                     <div class="blog-card__inner">
                                         <div class="blog-card__image">
-                                            <img src="{% static 'images/blog/blog-1-1.jpg' %}" alt="">
+                                            <img src="{{ blog.profile_image.url }}" alt="">
                                             <div class="blog-card__date"> {{ blog.created_at|date:"d F Y" }}</div><!-- /.blog-card__date -->
                                         </div><!-- /.blog-card__image -->
                                         <div class="blog-card__content">
