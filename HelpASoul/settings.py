@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-@=c4aukk3v^7n_08%j7002bs%1ut^71us(!$90=_!xw%lc2aht
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['root8000.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
@@ -138,6 +138,8 @@ EMAIL_HOST_USER = 'helpasoul24@gmail.com'
 EMAIL_HOST_PASSWORD = 'sergiustefan1994'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+GOOGLE_API_KEY = "AIzaSyCsfOoiVcmfgnjjZLwewFaFwShv-YI_3tw"
 
 
 

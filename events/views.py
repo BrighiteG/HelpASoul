@@ -67,3 +67,11 @@ class EventDeleteView(DeleteView):
     template_name = 'events/event_delete.html'
     model = Event
     success_url = reverse_lazy('events-list')
+
+
+def map_events_view(request):
+    # search_query = ''
+    # if request.GET.get('search_query'):
+    #     search_query = request.GET.get('search_query')
+
+    return render(request, 'events/map_events.html', {'events': events})

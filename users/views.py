@@ -4,11 +4,15 @@ from django.contrib.auth import login
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 
+from events.models import Event
 from users.forms import UserRegistrationForm, ProfileRegistrationForm
 
 
 def homepage(request):
-    return render(request, 'index.html')
+    events = Event.objects.filter(gps_coordinates_lat__isnull=False, gps_coordinates_long__isnull=False)
+    context = {'events': events}
+    return render(request, 'index.html', context)
+
 
 
 def register_user(request):
