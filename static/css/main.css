@@ -1062,9 +1062,6 @@
   transition: transform 500ms ease, opacity 500ms ease;
   transition: transform 500ms ease, opacity 500ms ease, -webkit-transform 500ms ease;
 }
-.image_container {
-  width: 100%;
-}
 
 .cause-card:hover .cause-card__image > img {
   opacity: 0.5;
@@ -2172,7 +2169,7 @@ h6 {
           box-shadow: 0px 0px 65px 0px rgba(0, 0, 0, 0.1);
 }
 
-@media (min-width: 1300px) {
+@media (min-width: 1200px) {
   .main-menu .container {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -2184,7 +2181,7 @@ h6 {
 
 @media (min-width: 1260px) {
   .main-menu .container {
-    max-width: 1400px;
+    max-width: 1250px;
     padding-left: 40px;
     padding-right: 40px;
   }
@@ -3433,14 +3430,10 @@ h6 {
           transform: translateY(100px);
   -webkit-transition-delay: 2500ms;
           transition-delay: 2500ms;
-  -webkit-transition: opacity 2000ms ease, color 500ms ease,
- background 500ms ease, -webkit-transform 2000ms ease;
-  transition: opacity 2000ms ease, color 500ms ease,
- background 500ms ease, -webkit-transform 2000ms ease;
-  transition: transform 2000ms ease, opacity 2000ms ease, color 500ms ease,
- background 500ms ease;
-  transition: transform 2000ms ease, opacity 2000ms ease, color 500ms ease,
- background 500ms ease, -webkit-transform 2000ms ease;
+  -webkit-transition: opacity 2000ms ease, color 500ms ease, background 500ms ease, -webkit-transform 2000ms ease;
+  transition: opacity 2000ms ease, color 500ms ease, background 500ms ease, -webkit-transform 2000ms ease;
+  transition: transform 2000ms ease, opacity 2000ms ease, color 500ms ease, background 500ms ease;
+  transition: transform 2000ms ease, opacity 2000ms ease, color 500ms ease, background 500ms ease, -webkit-transform 2000ms ease;
 }
 
 .main-slider .swiper-slide-active .image-layer {
@@ -3619,8 +3612,8 @@ h6 {
   left: 0;
   right: 0;
   bottom: 0;
-  /*-webkit-filter: grayscale(100%);*/
-  /*        filter: grayscale(100%);*/
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
   opacity: 0.2;
   background-repeat: no-repeat;
   background-size: cover;
@@ -7497,9 +7490,3 @@ h6 {
   color: var(--thm-black);
 }
 /*# sourceMappingURL=main.css.map */
-
-.center {
-  margin: auto;
-  width: 50%;
-  padding: 10px;
-}

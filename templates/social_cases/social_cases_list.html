@@ -24,53 +24,57 @@
                 <li><span>Causes</span></li>
             </ul><!-- /.thm-breadcrumb list-unstyled -->
         </div><!-- /.container -->
-        <div class="page-header center" style="background-color: transparent;">
-            <div class="footer-widget__newsletter center" style="width: 500px;">
-                <form action="{% url 'social-cases' %}" method="get" >
+        </div>
+
+        <div class="page-header center"
+             style="background-color: transparent; display: flex; align-items: center; justify-content: center">
+            <div class="footer-widget__newsletter center" style="width:500px">
+                <form action="{% url 'social-cases' %}" method="get">
                     <label for="formInputsearch" class="sr-only">Search</label>
-                    <input id='formInputsearch' type="text" value="{{ search_query }}" name="search_query"
-                           placeholder="Search" style="border-radius: 40px; text-align: left;">
+                    <input id="formInputsearch" type="text" value="{{ search_query }}" name="search_query"
+                           placeholder="Search" style="border-radius: 40px;text-align:left">
                 </form>
             </div>
+        </div>
 
-        </div>
-        </div>
     </section><!-- /.page-header -->
     <section class="causes-page pt-120 pb-120">
-     <div class="page-header center" style="background-color: transparent; padding-top:10px">
-         <div class="footer-widget__newsletter center" style="width: 500px">
-     <form method="get">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="tag1" value="Tag1" name="search_query">
-                <label class="form-check-label" for="tag1">Tag1</label>
+        <div class="page-header center" style="background-color: transparent; padding-top:10px;padding-bottom: 10px; display: flex; align-items: center; justify-content: center">
+            <div class="footer-widget__newsletter center" style="width: 500px ">
+                <form method="get">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="tag1" value="Tag1" name="search_query">
+                        <label class="form-check-label" for="tag1">Tag1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="tag2" value="Tag2" name="search_query">
+                        <label class="form-check-label" for="tag2">Tag2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="tag3" value="Tag3" name="search_query">
+                        <label class="form-check-label" for="tag3">Tag3</label>
+                    </div>
+                    <button type="submit" class="btn-dark">
+                        Search
+                    </button>
+                </form>
             </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="tag2" value="Tag2" name="search_query">
-                <label class="form-check-label" for="tag2">Tag2</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="tag3" value="Tag3" name="search_query">
-                <label class="form-check-label" for="tag3">Tag3</label>
-            </div>
-                <button type="submit" class="btn-dark">
-                    Search
-                </button>
-            </form>
-         </div>
-      </div>
+        </div>
         <div class="container">
             <div class="causes-col__3">
                 {% for case in social_cases_with_percentages %}
                     <div class="cause-card">
                         <div class="cause-card__inner">
                             <div class="cause-card__image">
-                                <img src="{{ case.social_case.profile_image.url }}" alt="picture" width="auto" height="250px" style="object-fit: cover">
+                                <img src="{{ case.social_case.profile_image.url }}" alt="picture" width="auto"
+                                     height="250px" style="object-fit: cover">
                             </div><!-- /.cause-card__image -->
                             <div class="cause-card__content">
                                 <div class="cause-card__top">
                                     <div class="cause-card__progress">
-                                        <span style="width:{{ case.percent }}%;" class="wow cardProgress" data-wow-duration="1500ms">
-                                            <b><i></i>{{case.percent}}%</b>
+                                        <span style="width:{{ case.percent }}%;" class="wow cardProgress"
+                                              data-wow-duration="1500ms">
+                                            <b><i></i>{{ case.percent }}%</b>
                                         </span>
                                     </div><!-- /.cause-card__progress -->
                                     <div class="cause-card__goals">
@@ -78,16 +82,18 @@
                                         <p><strong>Goal:{{ case.social_case.target_donation }}</strong></p>
                                     </div><!-- /.cause-card__goals -->
                                 </div><!-- /.cause-card__top -->
-                                <h3><a href="{% url 'social_case_detail' case.social_case.id %}">{{ case.social_case.title|slice:'16' }}</a>
+                                <h3>
+                                    <a href="{% url 'social_case_detail' case.social_case.id %}">{{ case.social_case.title|slice:'16' }}</a>
                                 </h3>
                                 <p>{{ case.social_case.description|slice:"100" }}</p>
-                                 <div  style="display:flex; flex-direction: row; padding-bottom: 20px">
+                                <div style="display:flex; flex-direction: row; padding-bottom: 20px">
                                     {% for tag in case.social_case.case_tags.all %}
                                         <small>{{ tag }}&nbsp;&nbsp;&nbsp;</small>
                                     {% endfor %}
                                 </div>
                                 <div class="cause-card__bottom">
-                                    <a href="{% url 'social_case_detail' case.social_case.id %}" class="thm-btn dynamic-radius">Donate
+                                    <a href="{% url 'social_case_detail' case.social_case.id %}"
+                                       class="thm-btn dynamic-radius">Donate
                                         Now</a>
                                     <!-- /.thm-btn dynamic-radius -->
                                     <a href="#" class="cause-card__share" aria-label="share postr"><i
@@ -99,27 +105,27 @@
                 {% endfor %}
             </div><!-- /.container -->
 
-        
-{#this include replaced this code#}
-{#             <div>#}
-{#                <ul class="list-unstyled post-pagination d-flex justify-content-center align-items-center">#}
-{#                    {% if social_cases_with_percentages.has_previous %}#}
-{#                        <li><a href="?page={{ social_cases_with_percentages.previous_page_number }}"><i class="far fa-angle-left"></i></a></li>#}
-{#                    {% endif %}#}
-{#                #}
-{#                    {% for page in custom_range %}#}
-{#                        {% if page == social_cases_with_percentages.number %}#}
-{#                            <li ><a href="?page={{ page }}" class="btn btn-dark" >{{ page }}</a></li>#}
-{#                         {% else %}#}
-{#                            <li><a href="?page={{ page }}">{{ page }}</a></li>#}
-{#                        {% endif %}#}
-{#                    {% endfor %}#}
-{#                #}
-{#                     {% if social_cases_with_percentages.has_next %}#}
-{#                        <li><a href="?page={{ social_cases_with_percentages.social_case.next_page_number }}"><i class="far fa-angle-right"></i></a></li>#}
-{#                     {% endif %}#}
-{#                </ul><!-- /.post-pagination -->#}
-{#                </div>#}
+
+            {#this include replaced this code#}
+            {#             <div>#}
+            {#                <ul class="list-unstyled post-pagination d-flex justify-content-center align-items-center">#}
+            {#                    {% if social_cases_with_percentages.has_previous %}#}
+            {#                        <li><a href="?page={{ social_cases_with_percentages.previous_page_number }}"><i class="far fa-angle-left"></i></a></li>#}
+            {#                    {% endif %}#}
+            {#                #}
+            {#                    {% for page in custom_range %}#}
+            {#                        {% if page == social_cases_with_percentages.number %}#}
+            {#                            <li ><a href="?page={{ page }}" class="btn btn-dark" >{{ page }}</a></li>#}
+            {#                         {% else %}#}
+            {#                            <li><a href="?page={{ page }}">{{ page }}</a></li>#}
+            {#                        {% endif %}#}
+            {#                    {% endfor %}#}
+            {#                #}
+            {#                     {% if social_cases_with_percentages.has_next %}#}
+            {#                        <li><a href="?page={{ social_cases_with_percentages.social_case.next_page_number }}"><i class="far fa-angle-right"></i></a></li>#}
+            {#                     {% endif %}#}
+            {#                </ul><!-- /.post-pagination -->#}
+            {#                </div>#}
         </div>
 
         {% include 'pagination.html' with queryset=social_cases_with_percentages custom_range=custom_range %}

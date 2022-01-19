@@ -6,22 +6,18 @@
 {% block content %}
 
     <div class="stricky-header stricked-menu">
-
-            <div class="container">
-                <div class="logo-box">
-                    <a href="{% url 'homepage' %}"><img src="{% static 'images/logo-light.png' %}" width="101" alt=""></a>
-                </div><!-- /.logo-box -->
-                    <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
-            </div><!-- /.container -->
-
+        <div class="container">
+            <div class="logo-box">
+                <a href="{% url 'homepage' %}"><img src="{% static 'images/logo-light.png' %}" width="101" alt=""></a>
+            </div><!-- /.logo-box -->
+            <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+        </div><!-- /.container -->
     </div><!-- /.stricky-header -->
-
     <section class="page-header" style="align-content: center">
         <div class="page-header__bg"
              style="background-image: url({% static 'images/backgrounds/happy_children.jpg' %});">
         </div>
         <!-- /.page-header__bg -->
-
         <div class="container">
             <h2>Upcoming Events</h2>
             <ul class="thm-breadcrumb list-unstyled dynamic-radius">
@@ -30,88 +26,85 @@
                 <li><span>Events</span></li>
             </ul><!-- /.thm-breadcrumb list-unstyled -->
         </div><!-- /.container -->
-
-
-        <div class="page-header center" style="background-color: transparent;">
-            <div class="footer-widget__newsletter center" style="width: 500px;">
-                <form action="{% url 'events-list' %}" method="get" >
+        <div class="page-header center"
+             style="background-color: transparent; display: flex; align-items: center; justify-content: center">
+            <div class="footer-widget__newsletter center" style="width:500px">
+                <form action="{% url 'social-cases' %}" method="get">
                     <label for="formInputsearch" class="sr-only">Search</label>
-                    <input id='formInputsearch' type="text" value="{{ search_query }}" name="search_query"
-                           placeholder="Search" style="border-radius: 40px; text-align: left;">
+                    <input id="formInputsearch" type="text" value="{{ search_query }}" name="search_query"
+                           placeholder="Search" style="border-radius: 40px;text-align:left">
                 </form>
             </div>
         </div>
-
     </section><!-- /.page-header -->
-
-
     <section class="event-page pt-120 pb-120">
         <div class="container">
             <div class="event-grid">
                 {% for event in events_list %}
-                <div class="event-card">
-                    <div class="event-card-inner">
-                        <div class="event-card-image">
-                            <div class="event-card-image-inner">
-                                <img src="{{ event.profile_image.url }}" alt="picture" width="auto" height="150px" style="object-fit: cover">
-                                <span> {{ event.start_date|date:"d F Y" }}</span>
-                            </div><!-- /.event-card-image-inner -->
-                        </div><!-- /.event-card-image -->
-                        <div class="event-card-content">
-                            <h3><a href="{% url 'event-detail-view' event.id %}">{{ event.title }}</a></h3>
-                            <ul class="event-card-list">
-                                <li>
-                                    <i class="azino-icon-clock"></i>
-                                    <strong>Start date: </strong>{{ event.start_date|date:"d F Y" }}<br>
-                                    <strong>End date: </strong>{{ event.end_date|date:"d F Y" }}
-                                </li>
+                    <div class="event-card">
+                        <div class="event-card-inner">
+                            <div class="event-card-image">
+                                <div class="event-card-image-inner">
+                                    <img src="{{ event.profile_image.url }}" alt="picture" width="auto" height="150px"
+                                         style="object-fit: cover">
+                                    <span> {{ event.start_date|date:"d F Y" }}</span>
+                                </div><!-- /.event-card-image-inner -->
+                            </div><!-- /.event-card-image -->
+                            <div class="event-card-content">
+                                <h3><a href="{% url 'event-detail-view' event.id %}">{{ event.title }}</a></h3>
+                                <ul class="event-card-list">
+                                    <li>
+                                        <i class="azino-icon-clock"></i>
+                                        <strong>Start date: </strong>{{ event.start_date|date:"d F Y" }}<br>
+                                        <strong>End date: </strong>{{ event.end_date|date:"d F Y" }}
+                                    </li>
 
-                                <li>
-                                    <i class="azino-icon-pin1"></i>
-                                    <strong>Location: </strong>{{ event.location }}<br>
-                                    <strong>Short Description: </strong>{{ event.description|slice:'20'}}<br>
-                                    <strong>Tags: </strong>
-                                    {% for tag in event.event_tags.all %}
-                                        <span>{{ tag }}.</span>
-                                    {% endfor %}<br>
-                                     <strong>Organisation: </strong>{{ event.organisation }}<br>
-                                </li>
-                            </ul><!-- /.event-card-list -->
+                                    <li>
+                                        <i class="azino-icon-pin1"></i>
+                                        <strong>Location: </strong>{{ event.location }}<br>
+                                        <strong>Short Description: </strong>{{ event.description|slice:'20' }}<br>
+                                        <strong>Tags: </strong>
+                                        {% for tag in event.event_tags.all %}
+                                            <span>{{ tag }}.</span>
+                                        {% endfor %}<br>
+                                        <strong>Organisation: </strong>{{ event.organisation }}<br>
+                                    </li>
+                                </ul><!-- /.event-card-list -->
 
-                        </div><!-- /.event-card-content -->
+                            </div><!-- /.event-card-content -->
 
-                    </div><!-- /.event-card-inner -->
+                        </div><!-- /.event-card-inner -->
 
-                </div><!-- /.event-card -->
+                    </div><!-- /.event-card -->
                 {% endfor %}
             </div>
 
         </div>
 
-    {% include 'pagination.html' with queryset=events_list custom_range=custom_range %}
-{#this include replaced this code#}
-{#        {% if events_list.has_other_pages %}#}
-{#        <div class="pagination">#}
-{#            <ul class="list-unstyled post-pagination d-flex justify-content-center align-items-center">#}
-{#                {% if events_list.has_previous %}#}
-{#                    <li><a href="?page={{ events_list.previous_page_number }}" class="btn" style="color: #1d2124">&#10094;&#10094; Prev</a></li>#}
-{#                {% endif %}#}
-{##}
-{#                {% for page in custom_range %}#}
-{#                    {% if page == events_list.number %}#}
-{#                        <li><a href="?page={{ page }}" class="btn btn-dark">{{ page }}</a></li>#}
-{#                    {% else %}#}
-{#                        <li><a href="?page={{ page }}" class="btn">{{ page }}</a></li>#}
-{#                    {% endif %}#}
-{#                {% endfor %}#}
-{##}
-{#                {% if events_list.has_next %}#}
-{#                    <li><a href="?page={{ events_list.next_page_number }}" class="btn" style="color: #fcad30">&#10095;&#10095; Next</a></li>#}
-{#                {% endif %}#}
-{#            </ul>#}
-{##}
-{#        </div>#}
-{#        {% endif %}#}
+        {% include 'pagination.html' with queryset=events_list custom_range=custom_range %}
+        {#this include replaced this code#}
+        {#        {% if events_list.has_other_pages %}#}
+        {#        <div class="pagination">#}
+        {#            <ul class="list-unstyled post-pagination d-flex justify-content-center align-items-center">#}
+        {#                {% if events_list.has_previous %}#}
+        {#                    <li><a href="?page={{ events_list.previous_page_number }}" class="btn" style="color: #1d2124">&#10094;&#10094; Prev</a></li>#}
+        {#                {% endif %}#}
+        {##}
+        {#                {% for page in custom_range %}#}
+        {#                    {% if page == events_list.number %}#}
+        {#                        <li><a href="?page={{ page }}" class="btn btn-dark">{{ page }}</a></li>#}
+        {#                    {% else %}#}
+        {#                        <li><a href="?page={{ page }}" class="btn">{{ page }}</a></li>#}
+        {#                    {% endif %}#}
+        {#                {% endfor %}#}
+        {##}
+        {#                {% if events_list.has_next %}#}
+        {#                    <li><a href="?page={{ events_list.next_page_number }}" class="btn" style="color: #fcad30">&#10095;&#10095; Next</a></li>#}
+        {#                {% endif %}#}
+        {#            </ul>#}
+        {##}
+        {#        </div>#}
+        {#        {% endif %}#}
 
     </section>
 
