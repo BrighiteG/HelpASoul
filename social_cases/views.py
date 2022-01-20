@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-
 from django.urls import reverse_lazy, reverse
 from django.views.generic import UpdateView, DeleteView
+from HelpASoul.settings import STRIPE_SECRET_KEY
 from events.models import Tag
 from social_cases.forms import SocialCaseForm, ReviewForm
 from social_cases.models import SocialCase
@@ -10,7 +10,7 @@ from users.models import Profile, Review
 from .utils import paginate_social_cases
 import stripe
 
-stripe.api_key = "sk_test_51KGj3IDpxOYBflJAPVnLOtHUE51D1ih5BfY9Y5kKibHwSezBfH9NYA0Kr3fEt5KheJWj9w5ezLDtDmVCMkFMe2Pa00gRjrxwOt"
+stripe.api_key = STRIPE_SECRET_KEY
 
 
 def social_case_create(request):
@@ -47,12 +47,12 @@ def social_case_list_view(request):
     custom_range, social_cases_with_percentages = paginate_social_cases(request, social_cases_with_percentages, 3)
 
     context = {
-                'socialcase': social_cases,
-                'search_query': search_query,
-                'custom_range': custom_range,
-                'social_cases_with_percentages': social_cases_with_percentages
-               # 'social_cases_with_donation': social_cases_with_donation,
-               }
+        'socialcase': social_cases,
+        'search_query': search_query,
+        'custom_range': custom_range,
+        'social_cases_with_percentages': social_cases_with_percentages
+        # 'social_cases_with_donation': social_cases_with_donation,
+    }
 
     return render(request, 'social_cases/social_cases_list.html', context)
 
@@ -88,19 +88,28 @@ def social_case_detail(request, pk):
     return render(request, 'social_cases/social_case_detail_view.html', context)
 
 
-def stripe_form(request):
-
-    return render(request, 'stripe/stripe_donation_form.html')
+def index(request):
+    return render(request, 'stripe/index1.html')
 
 
 def charge(request):
-    amount = 5
     if request.method == 'POST':
-        print('Data:', request.POST)
+        amount = int(request.POST['amount'])
+        customer = stripe.Customer.create(
+            email=request.POST['email'],
+            name=request.POST['nickname'],
+            source=request.POST['stripeToken']
+        )
+        charge = stripe.Charge.create(
+            customer=customer,
+            amount=amount * 100,
+            currency='usd',
+            description="Donation"
+        )
 
-    return redirect(reverse('succes', args=[amount]))
+    return redirect(reverse('success', args=[amount]))
 
 
-def stripe_payment_success(request, args):
+def successMsg(request, args):
     amount = args
-    return render(request, 'stripe/stripe_success.html', {'amount': amount})
+    return render(request, 'stripe/success.html', {'amount': amount})

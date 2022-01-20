@@ -21,7 +21,6 @@ class SocialCase(models.Model):
     target_donation = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
 
 
-
     def percent_raised(self):
         total = 0
         for donation in self.donations_so_far.all():
