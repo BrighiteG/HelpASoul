@@ -4,7 +4,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -14,8 +13,7 @@ SECRET_KEY = 'django-insecure-@=c4aukk3v^7n_08%j7002bs%1ut^71us(!$90=_!xw%lc2aht
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['root8000.pythonanywhere.com', '127.0.0.1']
-
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -26,11 +24,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'social_cases.apps.SocialCasesConfig',
     'events.apps.EventsConfig',
     'users.apps.UsersConfig',
     'blog.apps.BlogConfig'
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -65,7 +70,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'HelpASoul.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -75,7 +79,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -95,7 +98,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -106,7 +108,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -119,7 +120,6 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -139,8 +139,5 @@ EMAIL_HOST_PASSWORD = 'sergiustefan1994'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-GOOGLE_API_KEY = "AIzaSyCsfOoiVcmfgnjjZLwewFaFwShv-YI_3tw"
-
-
-
-
+STRIPE_PUBLIC_KEY = 'pk_test_51KGj3IDpxOYBflJAfuFRkv8FvwSi5UniQ38al7wXdH9BKoLua4sQgLRfsUGh69q9Jhj38l0wiTPOrJ4wPU5QLGKz00FnWXQqs9'
+STRIPE_SECRET_KEY = 'sk_test_51KGj3IDpxOYBflJAPVnLOtHUE51D1ih5BfY9Y5kKibHwSezBfH9NYA0Kr3fEt5KheJWj9w5ezLDtDmVCMkFMe2Pa00gRjrxwOt'
