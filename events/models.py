@@ -29,4 +29,3 @@ class Event(models.Model):
         return str(self.title)
 
 
-
