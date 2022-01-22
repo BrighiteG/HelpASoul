@@ -9,7 +9,6 @@ if TYPE_CHECKING:
     from events.models import Tag
 
 
-
 class SocialCase(models.Model):
     title = models.CharField(max_length=200)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
