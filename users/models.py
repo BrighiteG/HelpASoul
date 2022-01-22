@@ -15,7 +15,6 @@ class Profile(models.Model):
     is_volunteer = models.BooleanField(default=False)
     profile_tags = models.ManyToManyField('events.Tag')
 
-
     def __str__(self):
         return f"{self.user.first_name}, {self.user.last_name}"
 
