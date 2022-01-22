@@ -34,7 +34,7 @@ def event_create(request):
 
 def event_list_view(request):
     events, search_query = search_events(request)
-    custom_range, events = paginate_events(request, events, 2)
+    custom_range, events = paginate_events(request, events, 4)
 
 
     context = {'events_list': events, 'search_query': search_query, 'custom_range': custom_range}
@@ -67,3 +67,8 @@ class EventDeleteView(DeleteView):
     template_name = 'events/event_delete.html'
     model = Event
     success_url = reverse_lazy('events-list')
+
+
+# def map_events_view(request):
+#     events = Event.objects.filter(gps_coordinates_lat__isnull=False, gps_coordinates_long__isnull=False)
+#     return render(request, 'events/map_events.html', {'events': events})

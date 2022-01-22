@@ -248,7 +248,7 @@
                     <div class="swiper-wrapper">
                         {% for case in social_cases_with_percentages %}
                         <div class="swiper-slide">
-
+                            <div class="wow fadeInLeft" data-wow-duration="1500ms" data-wow-delay="0ms">
                             <div class="cause-card">
                                 <div class="cause-card__inner">
                                     <div class="cause-card__image"  >
@@ -280,7 +280,7 @@
                                     </div><!-- /.cause-card__content -->
                                 </div><!-- /.cause-card__inner -->
                             </div><!-- /.cause-card -->
-
+                            </div><!-- /.wow fadeInLeft -->
                         </div><!-- /.swiper-slide -->
                         {% endfor %}
 
@@ -710,7 +710,8 @@
                 <div class="row align-items-start align-items-md-center flex-column flex-md-row mb-60">
                     <div class="col-lg-7">
                         <div class="block-title">
-                            <p><img src="{{ blog.profile_image }}" width="15" alt="">Blog Posts</p>
+                            <p><img src="{{ blog.profile_image }}" width="auto" alt="" height="250px"
+                                    style="object-fit: cover">Blog Posts</p>
                             <h3>Latest news & articles <br> directly from the blog.</h3>
                         </div><!-- /.block-title -->
                     </div><!-- /.col-lg-7 -->
@@ -763,7 +764,8 @@
                                 <div class="blog-card">
                                     <div class="blog-card__inner">
                                         <div class="blog-card__image">
-                                            <img src="{{ blog.profile_image.url }}" alt="">
+                                            <img src="{{ blog.profile_image.url }}" alt="" width="auto"
+                                                                                            height="250px" style="object-fit: cover" >
                                             <div class="blog-card__date"> {{ blog.created_at|date:"d F Y" }}</div><!-- /.blog-card__date -->
                                         </div><!-- /.blog-card__image -->
                                         <div class="blog-card__content">
@@ -850,23 +852,34 @@
                             <div class="call-to-action__icon">
                                 <i class="azino-icon-support"></i>
                             </div><!-- /.call-to-action__icon -->
-                            <h3>Let’s make a difference in <br> the lives of others</h3>
+                            <h3>Alege evenimentul în care vrei să te implici</h3>
                         </div><!-- /.call-to-action__content -->
                     </div><!-- /.col-lg-9 -->
                     <div
                         class="col-xl-3 col-lg-4 d-flex justify-content-start justify-content-md-center justify-content-xl-end justify-content-lg-end">
-                        <a href="become-volunteer.html" class="thm-btn dynamic-radius">Become a Volunteer</a>
+                        <a href="become-volunteer.html" class="thm-btn dynamic-radius">Fii voluntar</a>
                         <!-- /.thm-btn dynamic-radius -->
                     </div><!-- /.col-lg-3 -->
                 </div><!-- /.row -->
             </div><!-- /.container -->
         </section><!-- /.call-to-action -->
 
-        <div class="google-map__home">
-            <iframe title="template google map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4562.753041141002!2d-118.80143790098536!3d34.1543469614075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80e82469c2162619%3A0xba03efb7998eef6d!2sCostco+Wholesale!5e0!3m2!1sbn!2sbd!4v1562518641290!5m2!1sbn!2sbd"
-                class="map__home" allowfullscreen></iframe>
-        </div><!-- /.google-map -->
+{#        <div class="google-map__home">#}
+{#            <iframe title="template google map"#}
+{#                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4562.753041141002!2d-118.80143790098536!3d34.1543469614075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80e82469c2162619%3A0xba03efb7998eef6d!2sCostco+Wholesale!5e0!3m2!1sbn!2sbd!4v1562518641290!5m2!1sbn!2sbd"#}
+{#                class="map__home" allowfullscreen></iframe>#}
+{#            <div id="map" class="container-fluid" style="width: 500px; height: 400px;"></div>#}
+
+{#    <div class="google-map__home">#}
+{#        <div class="d-inline-flex p-2">#}
+{#             <div id="map" style="min-width: 1400px; min-height: 500px; margin-top: 100px;"></div>#}
+{#        </div>#}
+{#    </div><!-- /.google-map -->#}
+
+            <div class="d-flex flex-row-reverse">
+                <div id="map" style="width: 100%; min-height: 500px; margin-top: 130px; padding-top: 30px"></div>
+            </div>
+
         <div class="client-carousel pt-120 pb-120 client-carousel__has-top-shadow">
             <div class="container">
                 <div class="thm-swiper__slider swiper-container" data-swiper-options='{"spaceBetween": 100, "slidesPerView": 5, "autoplay": { "delay": 5000 }, "breakpoints": {
