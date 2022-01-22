@@ -41,7 +41,6 @@ def event_list_view(request):
     return render(request, 'events/events_list.html', context)
 
 
-
 class EventUpdateView(UpdateView):
     template_name = 'events/event_update.html'
     success_url = 'events-list'

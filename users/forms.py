@@ -16,6 +16,7 @@ class UserRegistrationForm(UserCreationForm):
             'username': TextInput(attrs={'placeholder': 'Introduceți username-ul dorit', 'class': 'form-control'}),
         }
 
+
 class ProfileRegistrationForm(forms.ModelForm):
     class Meta:
         model = Profile
