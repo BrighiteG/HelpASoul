@@ -214,46 +214,47 @@
                     </div><!-- /.col-lg-5 -->
                 </div>
                 <div class="swiper-container thm-swiper__slider" data-swiper-options='{"slidesPerView": 3, "spaceBetween": 30,
-        "breakpoints": {
-            "0": {
-                "slidesPerView": 1,
-                "spaceBetween": 30
-            },
-            "375": {
-                "slidesPerView": 1,
-                "spaceBetween": 30
-            },
-            "575": {
-                "slidesPerView": 1,
-                "spaceBetween": 30
-            },
-            "768": {
-                "slidesPerView": 1,
-                "spaceBetween": 30
-            },
-            "991": {
-                "slidesPerView": 2,
-                "spaceBetween": 30
-            },
-            "1199": {
-                "slidesPerView": 2,
-                "spaceBetween": 30
-            },
-            "1200": {
-                "slidesPerView": 3,
-                "spaceBetween": 30
-            }
-        }
-        }'>
+                    "breakpoints": {
+                        "0": {
+                            "slidesPerView": 1,
+                            "spaceBetween": 30
+                        },
+                        "375": {
+                            "slidesPerView": 1,
+                            "spaceBetween": 30
+                        },
+                        "575": {
+                            "slidesPerView": 1,
+                            "spaceBetween": 30
+                        },
+                        "768": {
+                            "slidesPerView": 1,
+                            "spaceBetween": 30
+                        },
+                        "991": {
+                            "slidesPerView": 2,
+                            "spaceBetween": 30
+                        },
+                        "1199": {
+                            "slidesPerView": 2,
+                            "spaceBetween": 30
+                        },
+                        "1200": {
+                            "slidesPerView": 3,
+                            "spaceBetween": 30
+                        }
+                    }
+                    }'>
+
                     <div class="swiper-wrapper">
                         {% for case in social_cases_with_percentages %}
                         <div class="swiper-slide">
                             <div class="wow fadeInLeft" data-wow-duration="1500ms" data-wow-delay="0ms">
-                            <div class="cause-card">
+                                <div class="cause-card">
                                 <div class="cause-card__inner">
                                     <div class="cause-card__image"  >
                                         <img src="{{ case.social_case.profile_image.url }}" alt="" width="auto"
-                                                                                            height="250px" style="object-fit: cover" >
+                                                                                            height="250px" style="object-fit: cover">
                                     </div><!-- /.cause-card__image -->
                                     <div class="cause-card__content">
                                         <div class="cause-card__top">
@@ -268,8 +269,7 @@
                                                 <p><strong>Goal:</strong> {{ case.social_case.target_donation }}</p>
                                             </div><!-- /.cause-card__goals -->
                                         </div><!-- /.cause-card__top -->
-                                        <h3><a href="{% url 'social_case_detail' case.social_case.id %}">{{ case.social_case.title }}</a>
-                                        </h3>
+                                        <h3><a href="{% url 'social_case_detail' case.social_case.id %}">{{ case.social_case.title }}</a></h3>
                                         <p>{{ case.social_case.description|slice:"100" }}</p>
                                         <div class="cause-card__bottom">
                                             <a href="{% url 'social_case_detail' case.social_case.id %}" class="thm-btn dynamic-radius">Donate Now</a>
@@ -283,11 +283,13 @@
                             </div><!-- /.wow fadeInLeft -->
                         </div><!-- /.swiper-slide -->
                         {% endfor %}
-
                     </div><!-- /.swiper-wrapper -->
+                </div>
                 </div><!-- /.causes-col__3 -->
             </div><!-- /.container -->
         </section><!-- /.causes-page -->
+
+
 
         <section class="call-to-action-two">
 
@@ -785,7 +787,6 @@
                                     </div><!-- /.blog-card__inner -->
                                 </div><!-- /.blog-card -->
                             </div><!-- /.wow fadeInLeft -->
-
                         </div><!-- /.swiper-slide -->
                         {% endfor %}
 {#                    <div class="swiper-slide">#}

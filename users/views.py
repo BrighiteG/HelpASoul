@@ -14,7 +14,6 @@ def homepage(request):
     return render(request, 'index.html', context)
 
 
-
 def register_user(request):
     if request.method == 'GET':
         user_form = UserRegistrationForm()
@@ -41,7 +40,7 @@ def register_user(request):
             login(request, user)
             return redirect('homepage')
         else:
-            messages.error(request, 'An error has occured during registration')
+            messages.error(request, 'An error has occurred during registration')
 
     context = {'user_form': user_form, 'profile_form': profile_form}
     return render(request, 'users/create_user.html', context)
@@ -61,7 +60,7 @@ def contact_us(request):
         message = request.POST['message']
 
         send_mail(
-            subject, #the subject of the mail
+            subject,  # the subject of the mail
             message,  # the message of the mail
             'helpasoul24@gmail.com',
             ['m.sergiu01@gmail.com'],

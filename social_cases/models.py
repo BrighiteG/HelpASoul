@@ -9,7 +9,6 @@ if TYPE_CHECKING:
     from events.models import Tag
 
 
-
 class SocialCase(models.Model):
     title = models.CharField(max_length=200)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
@@ -19,7 +18,6 @@ class SocialCase(models.Model):
     profile_image = models.ImageField(upload_to='static/images/', default='static/images/Aesthetic-Desktop-Wallpaper.jpg')
     case_tags = models.ManyToManyField('events.Tag')
     target_donation = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
-
 
     def percent_raised(self):
         total = 0
