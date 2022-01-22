@@ -2,7 +2,6 @@ from typing import TYPE_CHECKING
 from django.contrib.auth.models import User
 from django.db import models
 
-import events.models
 
 if TYPE_CHECKING:
     from events.models import Tag
@@ -26,4 +25,11 @@ class Review(models.Model):
     name = models.TextField(max_length=100, null=True)
     body = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
+
+
+class Volunteer(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    volunteer_tags = models.ManyToManyField('events.Tag')
+    event_id = models.ForeignKey('events.Event', on_delete=models.CASCADE, null=True, blank=True)
+    message = models.TextField(max_length=1000, blank=True, null=True)
 
