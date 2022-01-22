@@ -72,15 +72,17 @@ def contact_us(request):
     return render(request, 'users/contact_us.html')
 
 
-def become_volunteer(request):
+def become_volunteer(request, pk):
     user = request.user
     profile = Profile.objects.get(user=user)
+    event_id = Event.objects.get(pk=pk)
     form = VolunteerRegistrationForm()
     if request.method == 'POST':
         form = VolunteerRegistrationForm(request.POST)
         if form.is_valid():
             volunteer = form.save(commit=False)
             volunteer.profile = profile
+            volunteer.event_id = event_id
             volunteer.save()
             form.save_m2m()
             return redirect('home_page')
