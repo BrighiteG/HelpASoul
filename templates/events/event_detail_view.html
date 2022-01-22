@@ -34,7 +34,7 @@
                         {% for tag in event.event_tags.all %}
                         <p> Cuvinte cheie: {{ tag }}</p>
                         {% endfor %}
-
+                        <a href="{% url 'become-volunteer' event.id %}"> Volunteer</a>
                     </div><!-- /.col-md-12 -->
                     <div class="col-md-12 col-lg-6">
                         <img src="{{ event.profile_image.url }}" alt="image" width="512px" height="571x" style="object-fit: cover">

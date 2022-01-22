@@ -12,7 +12,6 @@ class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     phone_nr = models.IntegerField(null=True, blank=True)
     location = models.CharField(max_length=200, null=True, blank=True)
-    is_volunteer = models.BooleanField(default=False)
     profile_tags = models.ManyToManyField('events.Tag')
 
     def __str__(self):

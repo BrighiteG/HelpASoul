@@ -1,8 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.forms import TextInput, CheckboxSelectMultiple
-from users.models import Profile
+from django.forms import TextInput, CheckboxSelectMultiple, Textarea
+from users.models import Profile, Volunteer
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -26,3 +26,20 @@ class ProfileRegistrationForm(forms.ModelForm):
             'location': TextInput(attrs={'placeholder': 'Introduceți numele dvs.', 'class': 'form-control'}),
             # 'profile_tags': CheckboxSelectMultiple(attrs={'class': 'form-control'}),
         }
+
+
+class VolunteerRegistrationForm(forms.ModelForm):
+    # volunteer_tags = forms.MultipleChoiceField(label="Alege ariile de interes: ")
+
+    class Meta:
+        model = Volunteer
+        fields = ['volunteer_tags', 'message']
+
+        widgets = {
+            'volunteer_tags': CheckboxSelectMultiple(),
+            'message': Textarea(attrs={'placeholder': 'Spune-ne cum poți ajuta'})
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(VolunteerRegistrationForm, self).__init__(*args, **kwargs)
+        self.fields['volunteer_tags'].label = 'Alege ariile de interes'

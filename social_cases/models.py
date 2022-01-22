@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 class SocialCase(models.Model):
     title = models.CharField(max_length=200)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    organizer = models.TextField(max_length=200, null=True, blank=False)
+    organisation = models.TextField(max_length=200, null=True, blank=False)
     description = models.TextField(null=True, blank=False)
     created = models.DateTimeField(auto_now_add=True)
     profile_image = models.ImageField(upload_to='static/images/', default='static/images/Aesthetic-Desktop-Wallpaper.jpg')
