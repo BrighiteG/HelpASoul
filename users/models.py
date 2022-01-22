@@ -35,3 +35,5 @@ class Volunteer(models.Model):
     event_id = models.ForeignKey('events.Event', on_delete=models.CASCADE, null=True, blank=True)
     message = models.TextField(max_length=1000, blank=True, null=True)
 
+    def __str__(self):
+        return self.user_id.first_name

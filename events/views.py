@@ -68,7 +68,3 @@ class EventDeleteView(DeleteView):
     model = Event
     success_url = reverse_lazy('events-list')
 
-
-# def map_events_view(request):
-#     events = Event.objects.filter(gps_coordinates_lat__isnull=False, gps_coordinates_long__isnull=False)
-#     return render(request, 'events/map_events.html', {'events': events})
