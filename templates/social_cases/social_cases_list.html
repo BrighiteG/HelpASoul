@@ -4,6 +4,7 @@
 {% block title %} Social Cases {% endblock %}
 
 {% block content %}
+
     <div class="stricky-header stricked-menu">
         <div class="container">
             <div class="logo-box">
@@ -106,26 +107,26 @@
             </div><!-- /.container -->
 
 
-            {#this include replaced this code#}
-            {#             <div>#}
-            {#                <ul class="list-unstyled post-pagination d-flex justify-content-center align-items-center">#}
-            {#                    {% if social_cases_with_percentages.has_previous %}#}
-            {#                        <li><a href="?page={{ social_cases_with_percentages.previous_page_number }}"><i class="far fa-angle-left"></i></a></li>#}
-            {#                    {% endif %}#}
-            {#                #}
-            {#                    {% for page in custom_range %}#}
-            {#                        {% if page == social_cases_with_percentages.number %}#}
-            {#                            <li ><a href="?page={{ page }}" class="btn btn-dark" >{{ page }}</a></li>#}
-            {#                         {% else %}#}
-            {#                            <li><a href="?page={{ page }}">{{ page }}</a></li>#}
-            {#                        {% endif %}#}
-            {#                    {% endfor %}#}
-            {#                #}
-            {#                     {% if social_cases_with_percentages.has_next %}#}
-            {#                        <li><a href="?page={{ social_cases_with_percentages.social_case.next_page_number }}"><i class="far fa-angle-right"></i></a></li>#}
-            {#                     {% endif %}#}
-            {#                </ul><!-- /.post-pagination -->#}
-            {#                </div>#}
+{#            this include replaced this code#}
+{#                         <div>#}
+{#                            <ul class="list-unstyled post-pagination d-flex justify-content-center align-items-center">#}
+{#                                {% if social_cases_with_percentages.has_previous %}#}
+{#                                    <li><a href="?page={{ social_cases_with_percentages.previous_page_number }}"><i class="far fa-angle-left"></i></a></li>#}
+{#                                {% endif %}#}
+{##}
+{#                                {% for page in custom_range %}#}
+{#                                    {% if page == social_cases_with_percentages.number %}#}
+{#                                        <li ><a href="?page={{ page }}" class="btn btn-dark" >{{ page }}</a></li>#}
+{#                                     {% else %}#}
+{#                                        <li><a href="?page={{ page }}">{{ page }}</a></li>#}
+{#                                    {% endif %}#}
+{#                                {% endfor %}#}
+{##}
+{#                                 {% if social_cases_with_percentages.has_next %}#}
+{#                                    <li><a href="?page={{ social_cases_with_percentages.social_case.next_page_number }}"><i class="far fa-angle-right"></i></a></li>#}
+{#                                 {% endif %}#}
+{#                            </ul><!-- /.post-pagination -->#}
+{#                            </div>#}
         </div>
 
         {% include 'pagination.html' with queryset=social_cases_with_percentages custom_range=custom_range %}
