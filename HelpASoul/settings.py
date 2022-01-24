@@ -32,7 +32,8 @@ INSTALLED_APPS = [
     'social_cases.apps.SocialCasesConfig',
     'events.apps.EventsConfig',
     'users.apps.UsersConfig',
-    'blog.apps.BlogConfig'
+    'blog.apps.BlogConfig',
+    'newsletter.apps.NewsletterConfig',
 ]
 
 SITE_ID = 1
@@ -141,3 +142,7 @@ EMAIL_USE_TLS = True
 
 STRIPE_PUBLIC_KEY = 'pk_test_51KGj3IDpxOYBflJAfuFRkv8FvwSi5UniQ38al7wXdH9BKoLua4sQgLRfsUGh69q9Jhj38l0wiTPOrJ4wPU5QLGKz00FnWXQqs9'
 STRIPE_SECRET_KEY = 'sk_test_51KGj3IDpxOYBflJAPVnLOtHUE51D1ih5BfY9Y5kKibHwSezBfH9NYA0Kr3fEt5KheJWj9w5ezLDtDmVCMkFMe2Pa00gRjrxwOt'
+
+
+SENDGRID_API_KEY = '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'
+
