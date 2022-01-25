@@ -1,29 +1,24 @@
-<!doctype html>
-<html>
-    <head>
-        <title> Email Newsletter </title>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    </head>
-    <body>
-        <div class="container">
-            <div class="col-12">
-                <h1>Email Newsletter</h1>
-            </div>
-            <div class="col-12">
-                {% if email %}
-                <p>{{ email }} has been {{ action }}.</p>
-                {% endif %}
-            </div>
-        {% if form %}
-            <div class="col-12 col-md-4">
-                <form method="post" novalidate>
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <br>
-                    <button type="submit" class="btn btn-success">Subscribe!</button>
-                </form>
-            </div>
-        {% endif %}
-        </div>
-    </body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+        <div class="container" style="padding-top: 250px; padding-bottom: 20px; ">
+            <div class="flex-column" style="padding-left:350px;">
+                <div class=" align-content-lg-center col-lg-7" >
+                    <h3 class="text-center">Thank you for subscribing to our newsletter!</h3>
+                    <form action="#" method="POST" class="donate-options__form wow fadeInUp" data-wow-duration="1500ms">
+                        <p class="text-center">Stay up to date with our latest social cases and events
+                            {% csrf_token %}
+                                {{ form.email }}
+                                {{ form.subscriber_tags }}
+                        <button type="submit" class="thm-btn dynamic-radius">Subscribe</button>
+                        <!-- /.thm-btn dynamic-radius -->
+                    </form><!-- /.donate-options__form -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+{#    </section><!-- /.donate-options -->#}
+
+{% endblock content %}
+
