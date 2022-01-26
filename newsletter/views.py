@@ -78,7 +78,6 @@ def send_newsletter(request):
                     request.build_absolute_uri('/delete/'),
                     sub.email,
                     sub.conf_num))
-
             sg.send(message)
             # newsletter_tags = request.POST.get('newsletter_tag')
             # for tag in newsletter_tags:
