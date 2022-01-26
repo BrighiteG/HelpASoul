@@ -4,7 +4,7 @@ from django.db import models
 
 
 if TYPE_CHECKING:
-    from events.models import Tag
+    from events.models import Tag, Event
     from social_cases.models import SocialCase
 
 
@@ -35,3 +35,13 @@ class Volunteer(models.Model):
 
     def __str__(self):
         return self.user_id.first_name
+
+
+class Participant(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    event_id = models.ForeignKey('events.Event', on_delete=models.CASCADE, null=True, blank=True)
+    is_participant = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user_id.first_name
+
