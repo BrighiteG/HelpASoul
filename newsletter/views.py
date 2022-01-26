@@ -6,8 +6,7 @@ from users.models import Profile
 from .models import Subscriber
 from .forms import SubscriberForm, Newsletterform
 import random
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
+
 
 
 # Helper Functions
@@ -19,19 +18,22 @@ def random_digits():
 def new(request):
     if request.method == 'POST':
         sub = Subscriber(email=request.POST['email'], conf_num=random_digits())
+        tags = request.POST['subscriber_tags']
         sub.save()
-        message = Mail(
-            from_email='helpasoul24@gmail.com',
-            to_emails=sub.email,
-            subject='Newsletter Confirmation',
-            html_content='Thank you for signing up for my email newsletter! \
-                Please complete the process by \
-                <a href="{}?email={}&conf_num={}"> clicking here to \
-                confirm your registration</a>.'.format(request.build_absolute_uri('/confirm/'),
-                                                       sub.email,
-                                                       sub.conf_num))
-        sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
-        sg.send(message)
+        sub.subscriber_tags.set(tags)
+        send_mail(
+            subject='NewsLetter Confirmation',
+            message=[],
+            html_message='Thank you for signing up for my email newsletter! \
+                        Please complete the process by \
+                        <a href="{}?email={}&conf_num={}"> clicking here to \
+                        confirm your registration</a>.'.format(request.build_absolute_uri('/confirm/'),
+                                                               sub.email,
+                                                               sub.conf_num),
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[sub.email]
+
+        )
         return render(request, 'newsletter/user_subscribe.html',
                       {'email': sub.email, 'action': 'added', 'form': SubscriberForm})
     else:
@@ -68,23 +70,21 @@ def send_newsletter(request):
             newsletter.profile = profile
 
         newsletter_tags = form.cleaned_data['newsletter_tag']
-        subscribers_email = Subscriber.objects.filter(subscriber_tags__in=newsletter_tags).values_list('email', flat=True)
-        subscribers = Subscriber.objects.filter(confirmed=True)
-        sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
+        subscribers_email = Subscriber.objects.filter(subscriber_tags__in=newsletter_tags).values('email', 'conf_num')
 
         for sub in subscribers_email:
-            message = Mail(
-                from_email='helpasoul24@gmail.com',
-                to_emails=sub,
+            send_mail(
                 subject=newsletter.subject,
-                html_content=newsletter.contents + (
+                message=newsletter.contents,
+                html_message=newsletter.contents + (
                     '<br><a href="{}?email={}&conf_num={}">Unsubscribe</a>.').format(
                     request.build_absolute_uri('/delete/'),
-                    "sub.email",
-                    "sub.conf_num"))
+                    sub['email'],
+                    sub['conf_num']),
+                from_email=settings.EMAIL_HOST_USER,
+                recipient_list=[sub['email']]
+            )
 
-            sg.send(message)
-            print(f'MESSAGE SENT SUCCESFULLY TO {sub}')
     context = {'form': form}
 
     return render(request, 'newsletter/newsletter_create.html', context)
