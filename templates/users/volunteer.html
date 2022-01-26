@@ -5,15 +5,25 @@
 
 {% block content %}
 
-        <div class="content-box" style=" padding-top: 250px; padding-bottom: 50px">
-    <div class="cold-md6 offset-md-3">
-        <form method="POST" enctype="multipart/form-data" class="become-volunteer__form form-one " >
-            {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit" class="btn btn-primary">Volunteer</button>
-        </form>
+        <div class="content-box" style="padding-top: 300px; padding-bottom: 200px; padding-left: 100px">
+            <h3 align="center">{{ user.first_name }}, Ne bucurăm că vrei să contribui la o lume mai bună !</h3>
+                <br>
+            <div class="container-fluid" style="padding-bottom: 50px">
+                <h5>Completeaza formularul de mai jos cu detalii despre domeniile în care ai vrea să te implici și cum
+                    poți fi de ajutor </h5>
+                    <br>
+                <h5>Vei primi un e-mail când o asociație adaugă o înregistrare nouă care corespunde profilului tău de voluntar</h5>
+                    <br>
+            </div>
 
-    </div>
-    </div>
+            <div class="cold-md6 offset-md-1" style="padding-right: 150px; width: 85%">
+                <form method="POST" enctype="multipart/form-data" class="become-volunteer__form form-one " >
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button type="submit" class="btn btn-primary">Volunteer</button>
+                </form>
+            </div>
+
+        </div>
 
 {% endblock content %}

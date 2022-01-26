@@ -135,8 +135,8 @@ LOGOUT_REDIRECT_URL = '/login/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'helpasoul24@gmail.com'
-EMAIL_HOST_PASSWORD = 'sergiustefan1994'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -146,3 +146,5 @@ STRIPE_SECRET_KEY = 'sk_test_51KGj3IDpxOYBflJAPVnLOtHUE51D1ih5BfY9Y5kKibHwSezBfH
 
 SENDGRID_API_KEY = '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'
 
+print(EMAIL_HOST_USER)
+print(EMAIL_HOST_PASSWORD)
