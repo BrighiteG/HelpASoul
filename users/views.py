@@ -100,7 +100,7 @@ def participate(request, pk):
             participant.user_id = user
             participant.save()
             form.save_m2m()
-            return redirect('vent-detail-view')
+            return redirect('events-list')
     context = {'form': form}
     return render(request, 'users/participate.html', context)
 
