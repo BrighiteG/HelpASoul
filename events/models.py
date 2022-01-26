@@ -29,3 +29,10 @@ class Event(models.Model):
         return str(self.title)
 
 
+class Participant(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    event_id = models.ForeignKey(Event, on_delete=models.CASCADE, null=True, blank=True)
+    is_participant = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user_id.first_name

@@ -1,4 +1,4 @@
-
+from django.core.mail import send_mail
 from django.shortcuts import render
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
@@ -66,31 +66,25 @@ def send_newsletter(request):
         if form.is_valid():
             newsletter = form.save(commit=False)
             newsletter.profile = profile
+
+        newsletter_tags = form.cleaned_data['newsletter_tag']
+        subscribers_email = Subscriber.objects.filter(subscriber_tags__in=newsletter_tags).values_list('email', flat=True)
         subscribers = Subscriber.objects.filter(confirmed=True)
         sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
-        for sub in subscribers:
+
+        for sub in subscribers_email:
             message = Mail(
                 from_email='helpasoul24@gmail.com',
-                to_emails=sub.email,
+                to_emails=sub,
                 subject=newsletter.subject,
                 html_content=newsletter.contents + (
                     '<br><a href="{}?email={}&conf_num={}">Unsubscribe</a>.').format(
                     request.build_absolute_uri('/delete/'),
-                    sub.email,
-                    sub.conf_num))
-            sg.send(message)
-            # newsletter_tags = request.POST.get('newsletter_tag')
-            # for tag in newsletter_tags:
-            #     tags = tag['newsletter_tags']
-            #
-            #
-            # print(f"{tags} - Newsletter Data")
-            #
-            # subscriber_tags = sub.subscriber_tags.filter(subscriber__subscriber_tags__name__iexact='Animals')
-            # print(f"{subscriber_tags[0]}, subscriber Data")
-            # if subscriber_tags[0] == newsletter_tags:
-            #     print('MESSAGE SUCCEDED')
+                    "sub.email",
+                    "sub.conf_num"))
 
+            sg.send(message)
+            print(f'MESSAGE SENT SUCCESFULLY TO {sub}')
     context = {'form': form}
 
     return render(request, 'newsletter/newsletter_create.html', context)
