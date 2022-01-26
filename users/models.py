@@ -1,6 +1,7 @@
 from typing import TYPE_CHECKING
 from django.contrib.auth.models import User
 from django.db import models
+from events.models import Event
 
 
 if TYPE_CHECKING:
@@ -38,3 +39,4 @@ class Volunteer(models.Model):
 
     def __str__(self):
         return self.user_id.first_name
+

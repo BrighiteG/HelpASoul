@@ -5,7 +5,8 @@ from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 
 from events.models import Event
-from users.forms import UserRegistrationForm, ProfileRegistrationForm, VolunteerRegistrationForm
+from users.forms import UserRegistrationForm, ProfileRegistrationForm, VolunteerRegistrationForm, \
+    ParticipantRegistrationForm
 from users.models import Profile
 
 
@@ -87,6 +88,20 @@ def become_volunteer(request):
     return render(request, 'users/volunteer.html', context)
 
 
-
+def participate(request, pk):
+    user = request.user
+    form = ParticipantRegistrationForm()
+    event = Event.objects.get(id=pk)
+    if request.method == 'POST':
+        form = ParticipantRegistrationForm(request.POST)
+        if form.is_valid():
+            participant = form.save(commit=False)
+            participant.event_id = event
+            participant.user_id = user
+            participant.save()
+            form.save_m2m()
+            return redirect('vent-detail-view')
+    context = {'form': form}
+    return render(request, 'users/participate.html', context)
 
 

@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import TextInput, CheckboxSelectMultiple, Textarea, BooleanField, CheckboxInput
-from users.models import Profile, Volunteer
+from users.models import Profile, Volunteer, Participant
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -55,3 +55,12 @@ class VolunteerRegistrationForm(forms.ModelForm):
         self.fields['is_available_for_emergengy'].label = 'Poți fi contactat pentru situații neprevăzute și neplanificate?'
         self.fields['message'].label = 'Spune-ne cum dorești să te implici și cum și în ce domenii ai putea ajuta'
 
+
+class ParticipantRegistrationForm(forms.ModelForm):
+    class Meta:
+        model = Participant
+        fields = ['is_participant']
+
+    def __init__(self, *args, **kwargs):
+        super(ParticipantRegistrationForm, self).__init__(*args, **kwargs)
+        self.fields['is_participant'].label = 'Confirmi participarea ta la acest eveniment?'
