@@ -1,15 +1,18 @@
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import UpdateView, DeleteView
+
+from HelpASoul import settings
 from HelpASoul.settings import STRIPE_SECRET_KEY
 from events.models import Tag
+from newsletter.models import Subscriber
 from social_cases.forms import SocialCaseForm, ReviewForm
 from social_cases.models import SocialCase
 from django.db.models import Q
 from users.models import Profile, Review
 from .utils import paginate_social_cases
 import stripe
-
 
 stripe.api_key = STRIPE_SECRET_KEY
 
@@ -25,6 +28,24 @@ def social_case_create(request):
             social_case.profile = profile
             social_case.save()
             form.save_m2m()
+            social_case = SocialCase.objects.latest('created')
+            tags = social_case.case_tags.all()
+            subscribers = Subscriber.objects.filter(subscriber_tags__in=tags)
+
+            for sub in subscribers:
+                send_mail(
+                    subject=f"A new social case has been added ",
+                    message=f'Title: {social_case.title} \n Description: {social_case.description}',
+                    from_email=settings.EMAIL_HOST_USER,
+                    recipient_list=[sub.email],
+                    html_message=
+                    (social_case.title + social_case.description)
+                    + ('<br><a href="{}?email={}&conf_num={}">If you wish to unsubscribe please click this link</a>.').format(
+                        request.build_absolute_uri('/delete/'),
+                        sub.email,
+                        sub.conf_num),
+                )
+
             return redirect('social-cases')
     context = {'form': form}
     return render(request, 'social_cases/social_case_create.html', context)

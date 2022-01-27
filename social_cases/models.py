@@ -1,10 +1,8 @@
 from typing import TYPE_CHECKING
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models import Avg, Count, Sum
-
+from newsletter.models import Subscriber
 from users.models import Profile, Review
-
 if TYPE_CHECKING:
     from events.models import Tag
 
@@ -42,3 +40,6 @@ class Donation(models.Model):
 
     def __str__(self):
         return str(self.social_case.title)
+
+
+

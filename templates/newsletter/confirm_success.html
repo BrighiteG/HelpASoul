@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="align-content-center">
+        <div class=" align-content-lg-center col-lg-12" >
+            <div style="padding-top:500px; padding-bottom: 200px">
+                <h4> Your e-mail {{ email }} has been confirmed. Thank you !</h4>
+                    <p><a href="{% url 'home_page' %}">Back to Home</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+

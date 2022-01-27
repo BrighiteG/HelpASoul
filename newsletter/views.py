@@ -8,7 +8,6 @@ from .forms import SubscriberForm, Newsletterform
 import random
 
 
-
 # Helper Functions
 def random_digits():
     return "%0.12d" % random.randint(0, 999999999999)
@@ -54,9 +53,9 @@ def delete(request):
     sub = Subscriber.objects.get(email=request.GET['email'])
     if sub.conf_num == request.GET['conf_num']:
         sub.delete()
-        return render(request, 'newsletter/user_subscribe.html', {'email': sub.email, 'action': 'unsubscribed'})
+        return render(request, 'newsletter/unsubscribe_success.html', {'email': sub.email, 'action': 'unsubscribed'})
     else:
-        return render(request, 'newsletter/user_subscribe.html', {'email': sub.email, 'action': 'denied'})
+        return render(request, 'newsletter/unsubscribe_success.html', {'email': sub.email, 'action': 'denied'})
 
 
 def send_newsletter(request):
