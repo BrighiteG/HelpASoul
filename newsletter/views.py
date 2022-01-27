@@ -45,9 +45,9 @@ def confirm(request):
     if sub.conf_num == request.GET['conf_num']:
         sub.confirmed = True
         sub.save()
-        return render(request, 'newsletter/user_subscribe.html', {'email': sub.email, 'action': 'confirmed'})
+        return render(request, 'newsletter/confirm_success.html', {'email': sub.email, 'action': 'confirmed'})
     else:
-        return render(request, 'newsletter/user_subscribe.html', {'email': sub.email, 'action': 'denied'})
+        return render(request, 'newsletter/confirm_success.html', {'email': sub.email, 'action': 'denied'})
 
 
 def delete(request):

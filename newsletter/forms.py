@@ -9,7 +9,7 @@ class SubscriberForm(forms.ModelForm):
         model = Subscriber
         fields = ['email', 'subscriber_tags']
         widgets = {
-            'subscriber_tags': CheckboxSelectMultiple(attrs={'class': 'thm-btn dynamic-radius'}),
+            'subscriber_tags': CheckboxSelectMultiple(attrs={'class': 'thm-btn dynamic-radius;'}),
             'email': TextInput(attrs={'placeholder': 'Enter your email here'})
         }
 

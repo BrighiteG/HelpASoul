@@ -6,15 +6,20 @@
         <div class="container" style="padding-top: 250px; padding-bottom: 20px; ">
             <div class="flex-column" style="padding-left:350px;">
                 <div class=" align-content-lg-center col-lg-7" >
-                    <h3 class="text-center">Thank you for subscribing to our newsletter!</h3>
+                    {% if email %}
+                    <div style="padding-bottom: 200px;padding-top: 200px">
+                    <h3 class="text-center" >Thank you for subscribing to our newsletter <br> we`ve sent you a confirmation mail!</h3>
+                    </div>
+                    {% else %}
                     <form action="#" method="POST" class="donate-options__form wow fadeInUp" data-wow-duration="1500ms">
                         <p class="text-center">Stay up to date with our latest social cases and events
                             {% csrf_token %}
                                 {{ form.email }}
                                 {{ form.subscriber_tags }}
-                        <button type="submit" class="thm-btn dynamic-radius">Subscribe</button>
+                        <button type="submit" class="thm-btn dynamic-radius" style="border-radius: 10px">Subscribe</button>
                         <!-- /.thm-btn dynamic-radius -->
                     </form><!-- /.donate-options__form -->
+                    {% endif %}
                 </div><!-- /.col-lg-6 -->
             </div><!-- /.row -->
         </div><!-- /.container -->

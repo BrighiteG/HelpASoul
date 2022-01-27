@@ -72,9 +72,9 @@
                                         <a href="{% url 'social-cases' %}?page=1">Social Cases</a>
                                         <ul>
                                             <li><a href="{% url 'create-social-case' %}">Create Social Case</a></li>
-                                            <li><a href="causes.html">Animals</a></li>
-                                            <li><a href="cause-details.html">Environment</a></li>
-                                            <li><a href="cause-details.html">Community</a></li>
+                                            <li><a href="{% url 'social-cases' %}?search_query=Animals">Animals</a></li>
+                                            <li><a href="{% url 'social-cases' %}?search_query=Enviroment">Environment</a></li>
+                                            <li><a href="{% url 'social-cases' %}?search_query=Community">Community</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown"><a href="{% url 'events-list' %}">Events</a>
