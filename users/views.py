@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import login
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
+from django.template import loader
 
 from events.models import Event
 from users.forms import UserRegistrationForm, ProfileRegistrationForm, VolunteerRegistrationForm
@@ -35,7 +36,10 @@ def register_user(request):
                 subject,
                 message,
                 settings.EMAIL_HOST_USER,
-                [user.email]
+                [user.email],
+                html_message=loader.render_to_string('users/welcome_html.html',
+                                                     {'user_name': 'Welcome' + ' ' + user.first_name,
+                                                      'subject': 'We are glad you care about others and chose to be part of our community! '})
             )
 
             login(request, user)
@@ -88,8 +92,3 @@ def become_volunteer(request, pk):
             return redirect('home_page')
     context = {'form': form}
     return render(request, 'users/volunteer.html', context)
-
-
-
-
-
