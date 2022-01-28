@@ -6,7 +6,8 @@ from django.shortcuts import render, redirect
 from django.template import loader
 
 from events.models import Event
-from users.forms import UserRegistrationForm, ProfileRegistrationForm, VolunteerRegistrationForm
+from users.forms import UserRegistrationForm, ProfileRegistrationForm, VolunteerRegistrationForm, \
+    ParticipantRegistrationForm
 from users.models import Profile
 
 
@@ -76,19 +77,35 @@ def contact_us(request):
     return render(request, 'users/contact_us.html')
 
 
-def become_volunteer(request, pk):
+def become_volunteer(request):
     user = request.user
-    profile = Profile.objects.get(user=user)
-    event_id = Event.objects.get(pk=pk)
     form = VolunteerRegistrationForm()
     if request.method == 'POST':
         form = VolunteerRegistrationForm(request.POST)
         if form.is_valid():
             volunteer = form.save(commit=False)
-            volunteer.profile = profile
-            volunteer.event_id = event_id
+            volunteer.user_id = user
             volunteer.save()
             form.save_m2m()
             return redirect('home_page')
     context = {'form': form}
     return render(request, 'users/volunteer.html', context)
+
+
+def participate(request, pk):
+    user = request.user
+    form = ParticipantRegistrationForm()
+    event = Event.objects.get(id=pk)
+    if request.method == 'POST':
+        form = ParticipantRegistrationForm(request.POST)
+        if form.is_valid():
+            participant = form.save(commit=False)
+            participant.event_id = event
+            participant.user_id = user
+            participant.save()
+            form.save_m2m()
+            return redirect('events-list')
+    context = {'form': form}
+    return render(request, 'users/participate.html', context)
+
+

@@ -1,18 +1,17 @@
 {% extends 'base.html' %}
 {% load  static %}
 
-{% block title %} Become a volunteer {% endblock %}
+{% block title %} Participate event {% endblock %}
 
 {% block content %}
 
         <div class="content-box" style="padding-top: 300px; padding-bottom: 200px; padding-left: 100px">
-            <h3 align="center">{{ user.first_name }}, Ne bucurăm că vrei să contribui la o lume mai bună !</h3>
+            <h3 align="center">{{ user.first_name }}, Ne bucurăm că vrei să te alături campaniei !</h3>
                 <br>
             <div class="container-fluid" style="padding-bottom: 50px">
-                <h5>Completeaza formularul de mai jos cu detalii despre domeniile în care ai vrea să te implici și cum
-                    poți fi de ajutor </h5>
+                <h5>Înscrie-te dând click mai jos și alătură-te echipei de voluntari</h5>
                     <br>
-                <h5>Vei primi un e-mail când o asociație adaugă o înregistrare nouă care corespunde profilului tău de voluntar</h5>
+                <h5>Vei primi un e-mail când organizatorii au noutăți depre eveniment</h5>
                     <br>
             </div>
 
@@ -20,7 +19,7 @@
                 <form method="POST" enctype="multipart/form-data" class="become-volunteer__form form-one " >
                     {% csrf_token %}
                     {{form.as_p}}
-                    <button type="submit" class="btn btn-primary">Volunteer</button>
+                    <button type="submit" class="btn btn-primary">Enroll</button>
                 </form>
             </div>
 

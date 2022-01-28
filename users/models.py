@@ -29,8 +29,11 @@ class Review(models.Model):
 
 class Volunteer(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    location = models.CharField(max_length=50, null=True, blank=True)
+    professional_areas = models.CharField(max_length=100, null=True, blank=True)
+    is_driver = models.BooleanField(default=False)
+    is_available_for_emergengy = models.BooleanField(default=False)
     volunteer_tags = models.ManyToManyField('events.Tag')
-    event_id = models.ForeignKey('events.Event', on_delete=models.CASCADE, null=True, blank=True)
     message = models.TextField(max_length=1000, blank=True, null=True)
 
     def __str__(self):

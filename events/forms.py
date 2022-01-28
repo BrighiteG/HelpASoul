@@ -21,6 +21,6 @@ class EventForm(forms.ModelForm):
                                          'type': 'date'}),
             'location': TextInput(attrs={'placeholder': 'Adaugă adresa: strada / număr / localitate / județ',
                                          'class': 'form-control'}),
-            'event_tags': CheckboxSelectMultiple(),
+            'event_tags': CheckboxSelectMultiple(attrs={'class': "form-check-inline"}),
 
         }
